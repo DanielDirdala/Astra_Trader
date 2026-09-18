@@ -597,30 +597,25 @@ class Database:
 
                 return cur.fetchall()
 
-    def get_latest_scan_id(
-        self,
-    ):
-
+    def get_latest_scan_id(self):
         with self.connect() as conn:
-
             with conn.cursor() as cur:
-
-                cur.execute(
+                    cur.execute(
                     """
                     SELECT scan_id
                     FROM scan_results
+                    WHERE scan_id IS NOT NULL
+                    GROUP BY scan_id
                     ORDER BY
-                        scan_timestamp DESC
+                        MAX(scan_timestamp) DESC,
+                        scan_id DESC
                     LIMIT 1;
                     """
                 )
 
-                row = cur.fetchone()
+                    row = cur.fetchone()
 
-                if row is None:
-                    return None
-
-                return row["scan_id"]
+                    return row["scan_id"] if row else None
 
     # ========================================================
     # NEWS

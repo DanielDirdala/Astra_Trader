@@ -4,3 +4,4 @@ pandas
 numpy
 psycopg[binary]
 requests
+openai

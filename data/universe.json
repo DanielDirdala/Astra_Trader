@@ -1,0 +1,3547 @@
+{
+  "schema_version": 1,
+  "universe_id": "cce84f56-4b84-43da-be83-5366d200ee4b",
+  "fund": "IVV",
+  "source_url": "https://www.ishares.com/us/products/239726/ishares-core-s-p-500-etf/latest-holdings.csv",
+  "holdings_as_of": "2026-09-16",
+  "refreshed_at": "2026-09-18T05:08:19.982114+00:00",
+  "source_equities": 504,
+  "stocks": [
+    {
+      "source_symbol": "A",
+      "name": "AGILENT TECHNOLOGIES INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "A"
+    },
+    {
+      "source_symbol": "AAPL",
+      "name": "APPLE",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "AAPL"
+    },
+    {
+      "source_symbol": "ABBV",
+      "name": "ABBVIE",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ABBV"
+    },
+    {
+      "source_symbol": "ABNB",
+      "name": "AIRBNB CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "ABNB"
+    },
+    {
+      "source_symbol": "ABT",
+      "name": "ABBOTT LABORATORIES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ABT"
+    },
+    {
+      "source_symbol": "ACGL",
+      "name": "ARCH CAPITAL GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "ACGL"
+    },
+    {
+      "source_symbol": "ACN",
+      "name": "ACCENTURE PLC CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ACN"
+    },
+    {
+      "source_symbol": "ADBE",
+      "name": "ADOBE INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ADBE"
+    },
+    {
+      "source_symbol": "ADI",
+      "name": "ANALOG DEVICES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ADI"
+    },
+    {
+      "source_symbol": "ADM",
+      "name": "ARCHER DANIELS MIDLAND",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "ADM"
+    },
+    {
+      "source_symbol": "ADP",
+      "name": "AUTOMATIC DATA PROCESSING INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ADP"
+    },
+    {
+      "source_symbol": "ADSK",
+      "name": "AUTODESK",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ADSK"
+    },
+    {
+      "source_symbol": "AEE",
+      "name": "AMEREN",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "AEE"
+    },
+    {
+      "source_symbol": "AEP",
+      "name": "AMERICAN ELECTRIC POWER INC",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "AEP"
+    },
+    {
+      "source_symbol": "AES",
+      "name": "AES",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "AES"
+    },
+    {
+      "source_symbol": "AFL",
+      "name": "AFLAC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AFL"
+    },
+    {
+      "source_symbol": "AIG",
+      "name": "AMERICAN INTERNATIONAL GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AIG"
+    },
+    {
+      "source_symbol": "AIZ",
+      "name": "ASSURANT INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AIZ"
+    },
+    {
+      "source_symbol": "AJG",
+      "name": "ARTHUR J GALLAGHER",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AJG"
+    },
+    {
+      "source_symbol": "AKAM",
+      "name": "AKAMAI TECHNOLOGIES INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "AKAM"
+    },
+    {
+      "source_symbol": "ALB",
+      "name": "ALBEMARLE CORP",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "ALB"
+    },
+    {
+      "source_symbol": "ALGN",
+      "name": "ALIGN TECHNOLOGY",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ALGN"
+    },
+    {
+      "source_symbol": "ALL",
+      "name": "ALLSTATE CORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "ALL"
+    },
+    {
+      "source_symbol": "ALLE",
+      "name": "ALLEGION PLC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ALLE"
+    },
+    {
+      "source_symbol": "AMAT",
+      "name": "APPLIED MATERIAL INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "AMAT"
+    },
+    {
+      "source_symbol": "AMCR",
+      "name": "AMCOR PLC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "AMCR"
+    },
+    {
+      "source_symbol": "AMD",
+      "name": "ADVANCED MICRO DEVICES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "AMD"
+    },
+    {
+      "source_symbol": "AME",
+      "name": "AMETEK INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "AME"
+    },
+    {
+      "source_symbol": "AMGN",
+      "name": "AMGEN INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "AMGN"
+    },
+    {
+      "source_symbol": "AMP",
+      "name": "AMERIPRISE FINANCE INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AMP"
+    },
+    {
+      "source_symbol": "AMT",
+      "name": "AMERICAN TOWER REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "AMT"
+    },
+    {
+      "source_symbol": "AMZN",
+      "name": "AMAZON.COM INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "AMZN"
+    },
+    {
+      "source_symbol": "ANET",
+      "name": "ARISTA NETWORKS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ANET"
+    },
+    {
+      "source_symbol": "AON",
+      "name": "AON PLC CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AON"
+    },
+    {
+      "source_symbol": "AOS",
+      "name": "A O SMITH",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "AOS"
+    },
+    {
+      "source_symbol": "APA",
+      "name": "APA",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "APA"
+    },
+    {
+      "source_symbol": "APD",
+      "name": "AIR PRODUCTS AND CHEMICALS",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "APD"
+    },
+    {
+      "source_symbol": "APH",
+      "name": "AMPHENOL CORP CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "APH"
+    },
+    {
+      "source_symbol": "APO",
+      "name": "APOLLO GLOBAL MANAGEMENT",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "APO"
+    },
+    {
+      "source_symbol": "APP",
+      "name": "APPLOVIN CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "APP"
+    },
+    {
+      "source_symbol": "APTV",
+      "name": "APTIV PLC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "APTV"
+    },
+    {
+      "source_symbol": "ARE",
+      "name": "ALEXANDRIA REAL ESTATE EQUITIES RE",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "ARE"
+    },
+    {
+      "source_symbol": "ARES",
+      "name": "ARES MANAGEMENT CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "ARES"
+    },
+    {
+      "source_symbol": "ATO",
+      "name": "ATMOS ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "ATO"
+    },
+    {
+      "source_symbol": "AVGO",
+      "name": "BROADCOM INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "AVGO"
+    },
+    {
+      "source_symbol": "AVY",
+      "name": "AVERY DENNISON CORP",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "AVY"
+    },
+    {
+      "source_symbol": "AWK",
+      "name": "AMERICAN WATER WORKS",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "AWK"
+    },
+    {
+      "source_symbol": "AXON",
+      "name": "AXON ENTERPRISE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "AXON"
+    },
+    {
+      "source_symbol": "AXP",
+      "name": "AMERICAN EXPRESS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "AXP"
+    },
+    {
+      "source_symbol": "AZO",
+      "name": "AUTOZONE",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "AZO"
+    },
+    {
+      "source_symbol": "BA",
+      "name": "BOEING",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "BA"
+    },
+    {
+      "source_symbol": "BAC",
+      "name": "BANK OF AMERICA",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BAC"
+    },
+    {
+      "source_symbol": "BALL",
+      "name": "BALL CORP",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "BALL"
+    },
+    {
+      "source_symbol": "BAX",
+      "name": "BAXTER INTERNATIONAL",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "BAX"
+    },
+    {
+      "source_symbol": "BBY",
+      "name": "BEST BUY",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "BBY"
+    },
+    {
+      "source_symbol": "BDX",
+      "name": "BECTON DICKINSON",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "BDX"
+    },
+    {
+      "source_symbol": "BEN",
+      "name": "FRANKLIN TEMPLETON",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BEN"
+    },
+    {
+      "source_symbol": "BF B",
+      "name": "BROWN FORMAN CLASS B",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "BF.B"
+    },
+    {
+      "source_symbol": "BG",
+      "name": "BUNGE GLOBAL SA",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "BG"
+    },
+    {
+      "source_symbol": "BIIB",
+      "name": "BIOGEN",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "BIIB"
+    },
+    {
+      "source_symbol": "BKNG",
+      "name": "BOOKING HOLDINGS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "BKNG"
+    },
+    {
+      "source_symbol": "BKR",
+      "name": "BAKER HUGHES CLASS A",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "BKR"
+    },
+    {
+      "source_symbol": "BLDR",
+      "name": "BUILDERS FIRSTSOURCE INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "BLDR"
+    },
+    {
+      "source_symbol": "BLK",
+      "name": "BLACKROCK",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BLK"
+    },
+    {
+      "source_symbol": "BMY",
+      "name": "BRISTOL MYERS SQUIBB",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "BMY"
+    },
+    {
+      "source_symbol": "BNY",
+      "name": "BANK OF NEW YORK MELLON CORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BNY"
+    },
+    {
+      "source_symbol": "BR",
+      "name": "BROADRIDGE FINANCIAL SOLUTIONS INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "BR"
+    },
+    {
+      "source_symbol": "BRK B",
+      "name": "BERKSHIRE HATHAWAY INC CLASS B",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BRK.B"
+    },
+    {
+      "source_symbol": "BRO",
+      "name": "BROWN & BROWN INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BRO"
+    },
+    {
+      "source_symbol": "BSX",
+      "name": "BOSTON SCIENTIFIC CORP",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "BSX"
+    },
+    {
+      "source_symbol": "BX",
+      "name": "BLACKSTONE",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "BX"
+    },
+    {
+      "source_symbol": "BXP",
+      "name": "BXP",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "BXP"
+    },
+    {
+      "source_symbol": "C",
+      "name": "CITIGROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "C"
+    },
+    {
+      "source_symbol": "CAH",
+      "name": "CARDINAL HEALTH",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "CAH"
+    },
+    {
+      "source_symbol": "CARR",
+      "name": "CARRIER GLOBAL",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CARR"
+    },
+    {
+      "source_symbol": "CASY",
+      "name": "CASEYS GENERAL STORES INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "CASY"
+    },
+    {
+      "source_symbol": "CAT",
+      "name": "CATERPILLAR INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CAT"
+    },
+    {
+      "source_symbol": "CB",
+      "name": "CHUBB",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CB"
+    },
+    {
+      "source_symbol": "CBOE",
+      "name": "CBOE GLOBAL MARKETS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CBOE"
+    },
+    {
+      "source_symbol": "CBRE",
+      "name": "CBRE GROUP CLASS A",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "CBRE"
+    },
+    {
+      "source_symbol": "CCI",
+      "name": "CROWN CASTLE INC",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "CCI"
+    },
+    {
+      "source_symbol": "CCL",
+      "name": "CARNIVAL CORP LTD",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "CCL"
+    },
+    {
+      "source_symbol": "CDNS",
+      "name": "CADENCE DESIGN SYSTEMS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CDNS"
+    },
+    {
+      "source_symbol": "CDW",
+      "name": "CDW",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CDW"
+    },
+    {
+      "source_symbol": "CEG",
+      "name": "CONSTELLATION ENERGY CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "CEG"
+    },
+    {
+      "source_symbol": "CF",
+      "name": "CF INDUSTRIES HOLDINGS INC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "CF"
+    },
+    {
+      "source_symbol": "CFG",
+      "name": "CITIZENS FINANCIAL GROUP INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CFG"
+    },
+    {
+      "source_symbol": "CHD",
+      "name": "CHURCH AND DWIGHT INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "CHD"
+    },
+    {
+      "source_symbol": "CHRW",
+      "name": "CH ROBINSON WORLDWIDE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CHRW"
+    },
+    {
+      "source_symbol": "CHTR",
+      "name": "CHARTER COMMUNICATIONS CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "CHTR"
+    },
+    {
+      "source_symbol": "CI",
+      "name": "CIGNA",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "CI"
+    },
+    {
+      "source_symbol": "CIEN",
+      "name": "CIENA",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CIEN"
+    },
+    {
+      "source_symbol": "CINF",
+      "name": "CINCINNATI FINANCIAL",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CINF"
+    },
+    {
+      "source_symbol": "CL",
+      "name": "COLGATE-PALMOLIVE",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "CL"
+    },
+    {
+      "source_symbol": "CLX",
+      "name": "CLOROX",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "CLX"
+    },
+    {
+      "source_symbol": "CMCSA",
+      "name": "COMCAST CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "CMCSA"
+    },
+    {
+      "source_symbol": "CME",
+      "name": "CME GROUP CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CME"
+    },
+    {
+      "source_symbol": "CMG",
+      "name": "CHIPOTLE MEXICAN GRILL",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "CMG"
+    },
+    {
+      "source_symbol": "CMI",
+      "name": "CUMMINS INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CMI"
+    },
+    {
+      "source_symbol": "CMS",
+      "name": "CMS ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "CMS"
+    },
+    {
+      "source_symbol": "CNC",
+      "name": "CENTENE CORP",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "CNC"
+    },
+    {
+      "source_symbol": "CNP",
+      "name": "CENTERPOINT ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "CNP"
+    },
+    {
+      "source_symbol": "COF",
+      "name": "CAPITAL ONE FINANCIAL CORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "COF"
+    },
+    {
+      "source_symbol": "COHR",
+      "name": "COHERENT",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "COHR"
+    },
+    {
+      "source_symbol": "COIN",
+      "name": "COINBASE GLOBAL INC CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "COIN"
+    },
+    {
+      "source_symbol": "COO",
+      "name": "COOPER",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "COO"
+    },
+    {
+      "source_symbol": "COP",
+      "name": "CONOCOPHILLIPS",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "COP"
+    },
+    {
+      "source_symbol": "COR",
+      "name": "CENCORA",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "COR"
+    },
+    {
+      "source_symbol": "COST",
+      "name": "COSTCO WHOLESALE CORP",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "COST"
+    },
+    {
+      "source_symbol": "CPAY",
+      "name": "CORPAY",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "CPAY"
+    },
+    {
+      "source_symbol": "CPRT",
+      "name": "COPART INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CPRT"
+    },
+    {
+      "source_symbol": "CPT",
+      "name": "CAMDEN PROPERTY TRUST REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "CPT"
+    },
+    {
+      "source_symbol": "CRH",
+      "name": "CRH PUBLIC LIMITED PLC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "CRH"
+    },
+    {
+      "source_symbol": "CRL",
+      "name": "CHARLES RIVER LABORATORIES INTERNA",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "CRL"
+    },
+    {
+      "source_symbol": "CRM",
+      "name": "SALESFORCE",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CRM"
+    },
+    {
+      "source_symbol": "CRWD",
+      "name": "CROWDSTRIKE HOLDINGS CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CRWD"
+    },
+    {
+      "source_symbol": "CSCO",
+      "name": "CISCO SYSTEMS INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CSCO"
+    },
+    {
+      "source_symbol": "CSGP",
+      "name": "COSTAR GROUP",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "CSGP"
+    },
+    {
+      "source_symbol": "CSX",
+      "name": "CSX",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CSX"
+    },
+    {
+      "source_symbol": "CTAS",
+      "name": "CINTAS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "CTAS"
+    },
+    {
+      "source_symbol": "CTSH",
+      "name": "COGNIZANT TECHNOLOGY SOLUTIONS CLA",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "CTSH"
+    },
+    {
+      "source_symbol": "CTVA",
+      "name": "CORTEVA",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "CTVA"
+    },
+    {
+      "source_symbol": "CVNA",
+      "name": "CARVANA CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "CVNA"
+    },
+    {
+      "source_symbol": "CVS",
+      "name": "CVS HEALTH",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "CVS"
+    },
+    {
+      "source_symbol": "CVX",
+      "name": "CHEVRON",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "CVX"
+    },
+    {
+      "source_symbol": "D",
+      "name": "DOMINION ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "D"
+    },
+    {
+      "source_symbol": "DAL",
+      "name": "DELTA AIR LINES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "DAL"
+    },
+    {
+      "source_symbol": "DASH",
+      "name": "DOORDASH CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "DASH"
+    },
+    {
+      "source_symbol": "DD",
+      "name": "DUPONT DE NEMOURS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "DD"
+    },
+    {
+      "source_symbol": "DDOG",
+      "name": "DATADOG INC CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "DDOG"
+    },
+    {
+      "source_symbol": "DE",
+      "name": "DEERE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "DE"
+    },
+    {
+      "source_symbol": "DECK",
+      "name": "DECKERS OUTDOOR",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "DECK"
+    },
+    {
+      "source_symbol": "DELL",
+      "name": "DELL TECHNOLOGIES INC CLASS C",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "DELL"
+    },
+    {
+      "source_symbol": "DG",
+      "name": "DOLLAR GENERAL CORP",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "DG"
+    },
+    {
+      "source_symbol": "DGX",
+      "name": "QUEST DIAGNOSTICS INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "DGX"
+    },
+    {
+      "source_symbol": "DHI",
+      "name": "D R HORTON",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "DHI"
+    },
+    {
+      "source_symbol": "DHR",
+      "name": "DANAHER",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "DHR"
+    },
+    {
+      "source_symbol": "DIS",
+      "name": "WALT DISNEY",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "DIS"
+    },
+    {
+      "source_symbol": "DLR",
+      "name": "DIGITAL REALTY TRUST REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "DLR"
+    },
+    {
+      "source_symbol": "DLTR",
+      "name": "DOLLAR TREE INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "DLTR"
+    },
+    {
+      "source_symbol": "DOC",
+      "name": "HEALTHPEAK PROPERTIES INC",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "DOC"
+    },
+    {
+      "source_symbol": "DOV",
+      "name": "DOVER CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "DOV"
+    },
+    {
+      "source_symbol": "DOW",
+      "name": "DOW",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "DOW"
+    },
+    {
+      "source_symbol": "DPZ",
+      "name": "DOMINOS PIZZA",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "DPZ"
+    },
+    {
+      "source_symbol": "DRI",
+      "name": "DARDEN RESTAURANTS INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "DRI"
+    },
+    {
+      "source_symbol": "DTE",
+      "name": "DTE ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "DTE"
+    },
+    {
+      "source_symbol": "DUK",
+      "name": "DUKE ENERGY CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "DUK"
+    },
+    {
+      "source_symbol": "DVA",
+      "name": "DAVITA INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "DVA"
+    },
+    {
+      "source_symbol": "DVN",
+      "name": "DEVON ENERGY",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "DVN"
+    },
+    {
+      "source_symbol": "DXCM",
+      "name": "DEXCOM INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "DXCM"
+    },
+    {
+      "source_symbol": "EBAY",
+      "name": "EBAY",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "EBAY"
+    },
+    {
+      "source_symbol": "ECHO",
+      "name": "ECHOSTAR CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "ECHO"
+    },
+    {
+      "source_symbol": "ECL",
+      "name": "ECOLAB",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "ECL"
+    },
+    {
+      "source_symbol": "ED",
+      "name": "CONSOLIDATED EDISON",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "ED"
+    },
+    {
+      "source_symbol": "EFX",
+      "name": "EQUIFAX",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "EFX"
+    },
+    {
+      "source_symbol": "EG",
+      "name": "EVEREST GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "EG"
+    },
+    {
+      "source_symbol": "EIX",
+      "name": "EDISON INTERNATIONAL",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "EIX"
+    },
+    {
+      "source_symbol": "EL",
+      "name": "ESTEE LAUDER INC CLASS A",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "EL"
+    },
+    {
+      "source_symbol": "ELV",
+      "name": "ELEVANCE HEALTH INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ELV"
+    },
+    {
+      "source_symbol": "EME",
+      "name": "EMCOR GROUP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "EME"
+    },
+    {
+      "source_symbol": "EMR",
+      "name": "EMERSON ELECTRIC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "EMR"
+    },
+    {
+      "source_symbol": "EOG",
+      "name": "EOG RESOURCES",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "EOG"
+    },
+    {
+      "source_symbol": "EQIX",
+      "name": "EQUINIX REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "EQIX"
+    },
+    {
+      "source_symbol": "EQT",
+      "name": "EQT",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "EQT"
+    },
+    {
+      "source_symbol": "ERIE",
+      "name": "ERIE INDEMNITY CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "ERIE"
+    },
+    {
+      "source_symbol": "ES",
+      "name": "EVERSOURCE ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "ES"
+    },
+    {
+      "source_symbol": "ESS",
+      "name": "ESSEX PROPERTY TRUST REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "ESS"
+    },
+    {
+      "source_symbol": "ETN",
+      "name": "EATON PLC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ETN"
+    },
+    {
+      "source_symbol": "ETR",
+      "name": "ENTERGY CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "ETR"
+    },
+    {
+      "source_symbol": "EVRG",
+      "name": "EVERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "EVRG"
+    },
+    {
+      "source_symbol": "EW",
+      "name": "EDWARDS LIFESCIENCES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "EW"
+    },
+    {
+      "source_symbol": "EXC",
+      "name": "EXELON CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "EXC"
+    },
+    {
+      "source_symbol": "EXE",
+      "name": "EXPAND ENERGY",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "EXE"
+    },
+    {
+      "source_symbol": "EXPD",
+      "name": "EXPEDITORS INTERNATIONAL OF WASHIN",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "EXPD"
+    },
+    {
+      "source_symbol": "EXPE",
+      "name": "EXPEDIA GROUP",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "EXPE"
+    },
+    {
+      "source_symbol": "EXR",
+      "name": "EXTRA SPACE STORAGE REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "EXR"
+    },
+    {
+      "source_symbol": "F",
+      "name": "FORD MOTOR CO",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "F"
+    },
+    {
+      "source_symbol": "FANG",
+      "name": "DIAMONDBACK ENERGY",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "FANG"
+    },
+    {
+      "source_symbol": "FAST",
+      "name": "FASTENAL",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FAST"
+    },
+    {
+      "source_symbol": "FCX",
+      "name": "FREEPORT MCMORAN INC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "FCX"
+    },
+    {
+      "source_symbol": "FDS",
+      "name": "FACTSET RESEARCH SYSTEMS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "FDS"
+    },
+    {
+      "source_symbol": "FDX",
+      "name": "FEDEX CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FDX"
+    },
+    {
+      "source_symbol": "FDXF",
+      "name": "FEDEX FREIGHT HOLDING COMPANY INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FDXF"
+    },
+    {
+      "source_symbol": "FE",
+      "name": "FIRSTENERGY CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "FE"
+    },
+    {
+      "source_symbol": "FERG",
+      "name": "FERGUSON ENTERPRISES INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FERG"
+    },
+    {
+      "source_symbol": "FFIV",
+      "name": "F5",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "FFIV"
+    },
+    {
+      "source_symbol": "FICO",
+      "name": "FAIR ISAAC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "FICO"
+    },
+    {
+      "source_symbol": "FIS",
+      "name": "FIDELITY NATIONAL INFORMATION SERV",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "FIS"
+    },
+    {
+      "source_symbol": "FISV",
+      "name": "FISERV INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "FISV"
+    },
+    {
+      "source_symbol": "FITB",
+      "name": "FIFTH THIRD BANCORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "FITB"
+    },
+    {
+      "source_symbol": "FIX",
+      "name": "COMFORT SYSTEMS USA",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FIX"
+    },
+    {
+      "source_symbol": "FLEX",
+      "name": "FLEX LTD",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "FLEX"
+    },
+    {
+      "source_symbol": "FOX",
+      "name": "FOX CLASS B",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "FOX"
+    },
+    {
+      "source_symbol": "FOXA",
+      "name": "FOX CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "FOXA"
+    },
+    {
+      "source_symbol": "FRT",
+      "name": "FEDERAL REALTY INVESTMENT TRUST RE",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "FRT"
+    },
+    {
+      "source_symbol": "FSLR",
+      "name": "FIRST SOLAR",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "FSLR"
+    },
+    {
+      "source_symbol": "FTNT",
+      "name": "FORTINET",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "FTNT"
+    },
+    {
+      "source_symbol": "FTV",
+      "name": "FORTIVE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "FTV"
+    },
+    {
+      "source_symbol": "GD",
+      "name": "GENERAL DYNAMICS CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "GD"
+    },
+    {
+      "source_symbol": "GDDY",
+      "name": "GODADDY CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "GDDY"
+    },
+    {
+      "source_symbol": "GE",
+      "name": "GE AEROSPACE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "GE"
+    },
+    {
+      "source_symbol": "GEHC",
+      "name": "GE HEALTHCARE TECHNOLOGIES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "GEHC"
+    },
+    {
+      "source_symbol": "GEN",
+      "name": "GEN DIGITAL",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "GEN"
+    },
+    {
+      "source_symbol": "GEV",
+      "name": "GE VERNOVA",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "GEV"
+    },
+    {
+      "source_symbol": "GILD",
+      "name": "GILEAD SCIENCES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "GILD"
+    },
+    {
+      "source_symbol": "GIS",
+      "name": "GENERAL MILLS INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "GIS"
+    },
+    {
+      "source_symbol": "GL",
+      "name": "GLOBE LIFE",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "GL"
+    },
+    {
+      "source_symbol": "GLW",
+      "name": "CORNING",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "GLW"
+    },
+    {
+      "source_symbol": "GM",
+      "name": "GENERAL MOTORS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "GM"
+    },
+    {
+      "source_symbol": "GNRC",
+      "name": "GENERAC HOLDINGS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "GNRC"
+    },
+    {
+      "source_symbol": "GOOG",
+      "name": "ALPHABET CLASS C",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "GOOG"
+    },
+    {
+      "source_symbol": "GOOGL",
+      "name": "ALPHABET CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "GOOGL"
+    },
+    {
+      "source_symbol": "GPC",
+      "name": "GENUINE PARTS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "GPC"
+    },
+    {
+      "source_symbol": "GPN",
+      "name": "GLOBAL PAYMENTS INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "GPN"
+    },
+    {
+      "source_symbol": "GRMN",
+      "name": "GARMIN",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "GRMN"
+    },
+    {
+      "source_symbol": "GS",
+      "name": "GOLDMAN SACHS GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "GS"
+    },
+    {
+      "source_symbol": "GWW",
+      "name": "WW GRAINGER INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "GWW"
+    },
+    {
+      "source_symbol": "HAL",
+      "name": "HALLIBURTON",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "HAL"
+    },
+    {
+      "source_symbol": "HAS",
+      "name": "HASBRO",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "HAS"
+    },
+    {
+      "source_symbol": "HBAN",
+      "name": "HUNTINGTON BANCSHARES INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "HBAN"
+    },
+    {
+      "source_symbol": "HCA",
+      "name": "HCA HEALTHCARE",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "HCA"
+    },
+    {
+      "source_symbol": "HD",
+      "name": "HOME DEPOT",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "HD"
+    },
+    {
+      "source_symbol": "HIG",
+      "name": "HARTFORD INSURANCE GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "HIG"
+    },
+    {
+      "source_symbol": "HII",
+      "name": "HUNTINGTON INGALLS INDUSTRIES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "HII"
+    },
+    {
+      "source_symbol": "HLT",
+      "name": "HILTON WORLDWIDE HOLDINGS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "HLT"
+    },
+    {
+      "source_symbol": "HON",
+      "name": "HONEYWELL INTERNATIONAL INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "HON"
+    },
+    {
+      "source_symbol": "HONA",
+      "name": "HONEYWELL AEROSPACE INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "HONA"
+    },
+    {
+      "source_symbol": "HOOD",
+      "name": "ROBINHOOD MARKETS CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "HOOD"
+    },
+    {
+      "source_symbol": "HPE",
+      "name": "HEWLETT PACKARD ENTERPRISE",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "HPE"
+    },
+    {
+      "source_symbol": "HPQ",
+      "name": "HP INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "HPQ"
+    },
+    {
+      "source_symbol": "HRL",
+      "name": "HORMEL FOODS CORP",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "HRL"
+    },
+    {
+      "source_symbol": "HSIC",
+      "name": "HENRY SCHEIN",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "HSIC"
+    },
+    {
+      "source_symbol": "HST",
+      "name": "HOST HOTELS & RESORTS REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "HST"
+    },
+    {
+      "source_symbol": "HSY",
+      "name": "HERSHEY FOODS",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "HSY"
+    },
+    {
+      "source_symbol": "HUBB",
+      "name": "HUBBELL INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "HUBB"
+    },
+    {
+      "source_symbol": "HUM",
+      "name": "HUMANA",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "HUM"
+    },
+    {
+      "source_symbol": "HWM",
+      "name": "HOWMET AEROSPACE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "HWM"
+    },
+    {
+      "source_symbol": "IBKR",
+      "name": "INTERACTIVE BROKERS GROUP INC CLAS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "IBKR"
+    },
+    {
+      "source_symbol": "IBM",
+      "name": "INTERNATIONAL BUSINESS MACHINES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "IBM"
+    },
+    {
+      "source_symbol": "ICE",
+      "name": "INTERCONTINENTAL EXCHANGE INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "ICE"
+    },
+    {
+      "source_symbol": "IDXX",
+      "name": "IDEXX LABORATORIES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "IDXX"
+    },
+    {
+      "source_symbol": "IEX",
+      "name": "IDEX",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "IEX"
+    },
+    {
+      "source_symbol": "IFF",
+      "name": "INTERNATIONAL FLAVORS & FRAGRANCES",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "IFF"
+    },
+    {
+      "source_symbol": "INCY",
+      "name": "INCYTE CORP",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "INCY"
+    },
+    {
+      "source_symbol": "INTC",
+      "name": "INTEL CORPORATION",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "INTC"
+    },
+    {
+      "source_symbol": "INTU",
+      "name": "INTUIT",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "INTU"
+    },
+    {
+      "source_symbol": "INVH",
+      "name": "INVITATION HOMES",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "INVH"
+    },
+    {
+      "source_symbol": "IP",
+      "name": "INTERNATIONAL PAPER",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "IP"
+    },
+    {
+      "source_symbol": "IQV",
+      "name": "IQVIA HOLDINGS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "IQV"
+    },
+    {
+      "source_symbol": "IR",
+      "name": "INGERSOLL RAND INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "IR"
+    },
+    {
+      "source_symbol": "IRM",
+      "name": "IRON MOUNTAIN INC",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "IRM"
+    },
+    {
+      "source_symbol": "ISRG",
+      "name": "INTUITIVE SURGICAL",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ISRG"
+    },
+    {
+      "source_symbol": "IT",
+      "name": "GARTNER",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "IT"
+    },
+    {
+      "source_symbol": "ITW",
+      "name": "ILLINOIS TOOL INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ITW"
+    },
+    {
+      "source_symbol": "IVZ",
+      "name": "INVESCO LTD",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "IVZ"
+    },
+    {
+      "source_symbol": "J",
+      "name": "JACOBS SOLUTIONS INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "J"
+    },
+    {
+      "source_symbol": "JBHT",
+      "name": "JB HUNT TRANSPORT SERVICES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "JBHT"
+    },
+    {
+      "source_symbol": "JBL",
+      "name": "JABIL",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "JBL"
+    },
+    {
+      "source_symbol": "JCI",
+      "name": "JOHNSON CONTROLS INTERNATIONAL PLC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "JCI"
+    },
+    {
+      "source_symbol": "JKHY",
+      "name": "JACK HENRY AND ASSOCIATES INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "JKHY"
+    },
+    {
+      "source_symbol": "JNJ",
+      "name": "JOHNSON & JOHNSON",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "JNJ"
+    },
+    {
+      "source_symbol": "JPM",
+      "name": "JPMORGAN CHASE & CO",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "JPM"
+    },
+    {
+      "source_symbol": "KDP",
+      "name": "KEURIG DR PEPPER INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KDP"
+    },
+    {
+      "source_symbol": "KEY",
+      "name": "KEYCORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "KEY"
+    },
+    {
+      "source_symbol": "KEYS",
+      "name": "KEYSIGHT TECHNOLOGIES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "KEYS"
+    },
+    {
+      "source_symbol": "KHC",
+      "name": "KRAFT HEINZ",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KHC"
+    },
+    {
+      "source_symbol": "KIM",
+      "name": "KIMCO REALTY REIT CORP",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "KIM"
+    },
+    {
+      "source_symbol": "KKR",
+      "name": "KKR AND CO INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "KKR"
+    },
+    {
+      "source_symbol": "KLAC",
+      "name": "KLA",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "KLAC"
+    },
+    {
+      "source_symbol": "KMB",
+      "name": "KIMBERLY CLARK",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KMB"
+    },
+    {
+      "source_symbol": "KMI",
+      "name": "KINDER MORGAN",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "KMI"
+    },
+    {
+      "source_symbol": "KO",
+      "name": "COCA-COLA",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KO"
+    },
+    {
+      "source_symbol": "KR",
+      "name": "KROGER",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KR"
+    },
+    {
+      "source_symbol": "KVUE",
+      "name": "KENVUE",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "KVUE"
+    },
+    {
+      "source_symbol": "L",
+      "name": "LOEWS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "L"
+    },
+    {
+      "source_symbol": "LDOS",
+      "name": "LEIDOS HOLDINGS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "LDOS"
+    },
+    {
+      "source_symbol": "LEN",
+      "name": "LENNAR A CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "LEN"
+    },
+    {
+      "source_symbol": "LH",
+      "name": "LABCORP HOLDINGS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "LH"
+    },
+    {
+      "source_symbol": "LHX",
+      "name": "L3HARRIS TECHNOLOGIES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "LHX"
+    },
+    {
+      "source_symbol": "LII",
+      "name": "LENNOX INTERNATIONAL",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "LII"
+    },
+    {
+      "source_symbol": "LIN",
+      "name": "LINDE PLC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "LIN"
+    },
+    {
+      "source_symbol": "LITE",
+      "name": "LUMENTUM HOLDINGS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "LITE"
+    },
+    {
+      "source_symbol": "LLY",
+      "name": "ELI LILLY",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "LLY"
+    },
+    {
+      "source_symbol": "LMT",
+      "name": "LOCKHEED MARTIN CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "LMT"
+    },
+    {
+      "source_symbol": "LNT",
+      "name": "ALLIANT ENERGY CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "LNT"
+    },
+    {
+      "source_symbol": "LOW",
+      "name": "LOWES COMPANIES INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "LOW"
+    },
+    {
+      "source_symbol": "LRCX",
+      "name": "LAM RESEARCH",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "LRCX"
+    },
+    {
+      "source_symbol": "LULU",
+      "name": "LULULEMON ATHLETICA",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "LULU"
+    },
+    {
+      "source_symbol": "LUV",
+      "name": "SOUTHWEST AIRLINES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "LUV"
+    },
+    {
+      "source_symbol": "LVS",
+      "name": "LAS VEGAS SANDS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "LVS"
+    },
+    {
+      "source_symbol": "LYB",
+      "name": "LYONDELLBASELL INDUSTRIES CLASS A",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "LYB"
+    },
+    {
+      "source_symbol": "LYV",
+      "name": "LIVE NATION ENTERTAINMENT",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "LYV"
+    },
+    {
+      "source_symbol": "MA",
+      "name": "MASTERCARD CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MA"
+    },
+    {
+      "source_symbol": "MAA",
+      "name": "MID AMERICA APARTMENT COMMUNITIES",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "MAA"
+    },
+    {
+      "source_symbol": "MAR",
+      "name": "MARRIOTT INTERNATIONAL CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "MAR"
+    },
+    {
+      "source_symbol": "MAS",
+      "name": "MASCO",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "MAS"
+    },
+    {
+      "source_symbol": "MCD",
+      "name": "MCDONALDS CORP",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "MCD"
+    },
+    {
+      "source_symbol": "MCHP",
+      "name": "MICROCHIP TECHNOLOGY INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MCHP"
+    },
+    {
+      "source_symbol": "MCK",
+      "name": "MCKESSON CORP",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "MCK"
+    },
+    {
+      "source_symbol": "MCO",
+      "name": "MOODYS CORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MCO"
+    },
+    {
+      "source_symbol": "MDLZ",
+      "name": "MONDELEZ INTERNATIONAL INC CLASS A",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "MDLZ"
+    },
+    {
+      "source_symbol": "MDT",
+      "name": "MEDTRONIC PLC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "MDT"
+    },
+    {
+      "source_symbol": "MET",
+      "name": "METLIFE",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MET"
+    },
+    {
+      "source_symbol": "META",
+      "name": "META PLATFORMS CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "META"
+    },
+    {
+      "source_symbol": "MGM",
+      "name": "MGM RESORTS INTERNATIONAL",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "MGM"
+    },
+    {
+      "source_symbol": "MKC",
+      "name": "MCCORMICK & CO NON-VOTING",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "MKC"
+    },
+    {
+      "source_symbol": "MLM",
+      "name": "MARTIN MARIETTA MATERIALS",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "MLM"
+    },
+    {
+      "source_symbol": "MMM",
+      "name": "3M",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "MMM"
+    },
+    {
+      "source_symbol": "MNST",
+      "name": "MONSTER BEVERAGE",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "MNST"
+    },
+    {
+      "source_symbol": "MO",
+      "name": "ALTRIA GROUP INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "MO"
+    },
+    {
+      "source_symbol": "MOS",
+      "name": "MOSAIC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "MOS"
+    },
+    {
+      "source_symbol": "MPC",
+      "name": "MARATHON PETROLEUM",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "MPC"
+    },
+    {
+      "source_symbol": "MPWR",
+      "name": "MONOLITHIC POWER SYSTEMS INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MPWR"
+    },
+    {
+      "source_symbol": "MRK",
+      "name": "MERCK & CO INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "MRK"
+    },
+    {
+      "source_symbol": "MRNA",
+      "name": "MODERNA",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "MRNA"
+    },
+    {
+      "source_symbol": "MRSH",
+      "name": "MARSH",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MRSH"
+    },
+    {
+      "source_symbol": "MRVL",
+      "name": "MARVELL TECHNOLOGY",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MRVL"
+    },
+    {
+      "source_symbol": "MS",
+      "name": "MORGAN STANLEY",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MS"
+    },
+    {
+      "source_symbol": "MSCI",
+      "name": "MSCI",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MSCI"
+    },
+    {
+      "source_symbol": "MSFT",
+      "name": "MICROSOFT",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MSFT"
+    },
+    {
+      "source_symbol": "MSI",
+      "name": "MOTOROLA SOLUTIONS INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MSI"
+    },
+    {
+      "source_symbol": "MTB",
+      "name": "M&T BANK",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "MTB"
+    },
+    {
+      "source_symbol": "MTD",
+      "name": "METTLER TOLEDO",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "MTD"
+    },
+    {
+      "source_symbol": "MU",
+      "name": "MICRON TECHNOLOGY",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "MU"
+    },
+    {
+      "source_symbol": "NCLH",
+      "name": "NORWEGIAN CRUISE LINE HOLDINGS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "NCLH"
+    },
+    {
+      "source_symbol": "NDAQ",
+      "name": "NASDAQ INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "NDAQ"
+    },
+    {
+      "source_symbol": "NDSN",
+      "name": "NORDSON",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "NDSN"
+    },
+    {
+      "source_symbol": "NEE",
+      "name": "NEXTERA ENERGY",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "NEE"
+    },
+    {
+      "source_symbol": "NEM",
+      "name": "NEWMONT",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "NEM"
+    },
+    {
+      "source_symbol": "NFLX",
+      "name": "NETFLIX",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "NFLX"
+    },
+    {
+      "source_symbol": "NI",
+      "name": "NISOURCE",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "NI"
+    },
+    {
+      "source_symbol": "NKE",
+      "name": "NIKE CLASS B",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "NKE"
+    },
+    {
+      "source_symbol": "NOC",
+      "name": "NORTHROP GRUMMAN CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "NOC"
+    },
+    {
+      "source_symbol": "NOW",
+      "name": "SERVICENOW",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "NOW"
+    },
+    {
+      "source_symbol": "NRG",
+      "name": "NRG ENERGY INC",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "NRG"
+    },
+    {
+      "source_symbol": "NSC",
+      "name": "NORFOLK SOUTHERN CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "NSC"
+    },
+    {
+      "source_symbol": "NTAP",
+      "name": "NETAPP INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "NTAP"
+    },
+    {
+      "source_symbol": "NTRS",
+      "name": "NORTHERN TRUST",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "NTRS"
+    },
+    {
+      "source_symbol": "NUE",
+      "name": "NUCOR",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "NUE"
+    },
+    {
+      "source_symbol": "NVDA",
+      "name": "NVIDIA",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "NVDA"
+    },
+    {
+      "source_symbol": "NVR",
+      "name": "NVR",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "NVR"
+    },
+    {
+      "source_symbol": "NWS",
+      "name": "NEWS CLASS B",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "NWS"
+    },
+    {
+      "source_symbol": "NWSA",
+      "name": "NEWS CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "NWSA"
+    },
+    {
+      "source_symbol": "NXPI",
+      "name": "NXP SEMICONDUCTORS NV",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "NXPI"
+    },
+    {
+      "source_symbol": "O",
+      "name": "REALTY INCOME REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "O"
+    },
+    {
+      "source_symbol": "ODFL",
+      "name": "OLD DOMINION FREIGHT LINE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ODFL"
+    },
+    {
+      "source_symbol": "OKE",
+      "name": "ONEOK",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "OKE"
+    },
+    {
+      "source_symbol": "OMC",
+      "name": "OMNICOM GROUP INC",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "OMC"
+    },
+    {
+      "source_symbol": "ON",
+      "name": "ON SEMICONDUCTOR CORP",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ON"
+    },
+    {
+      "source_symbol": "ORCL",
+      "name": "ORACLE",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ORCL"
+    },
+    {
+      "source_symbol": "ORLY",
+      "name": "OREILLY AUTOMOTIVE INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "ORLY"
+    },
+    {
+      "source_symbol": "OTIS",
+      "name": "OTIS WORLDWIDE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "OTIS"
+    },
+    {
+      "source_symbol": "OXY",
+      "name": "OCCIDENTAL PETROLEUM CORP",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "OXY"
+    },
+    {
+      "source_symbol": "PANW",
+      "name": "PALO ALTO NETWORKS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "PANW"
+    },
+    {
+      "source_symbol": "PAYX",
+      "name": "PAYCHEX",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "PAYX"
+    },
+    {
+      "source_symbol": "PCAR",
+      "name": "PACCAR INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "PCAR"
+    },
+    {
+      "source_symbol": "PCG",
+      "name": "PG&E CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "PCG"
+    },
+    {
+      "source_symbol": "PEG",
+      "name": "PUBLIC SERVICE ENTERPRISE GROUP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "PEG"
+    },
+    {
+      "source_symbol": "PEP",
+      "name": "PEPSICO",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "PEP"
+    },
+    {
+      "source_symbol": "PFE",
+      "name": "PFIZER",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "PFE"
+    },
+    {
+      "source_symbol": "PFG",
+      "name": "PRINCIPAL FINANCIAL GROUP INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "PFG"
+    },
+    {
+      "source_symbol": "PG",
+      "name": "PROCTER & GAMBLE",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "PG"
+    },
+    {
+      "source_symbol": "PGR",
+      "name": "PROGRESSIVE",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "PGR"
+    },
+    {
+      "source_symbol": "PH",
+      "name": "PARKER-HANNIFIN",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "PH"
+    },
+    {
+      "source_symbol": "PHM",
+      "name": "PULTEGROUP",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "PHM"
+    },
+    {
+      "source_symbol": "PKG",
+      "name": "PACKAGING CORP OF AMERICA",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "PKG"
+    },
+    {
+      "source_symbol": "PLD",
+      "name": "PROLOGIS REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "PLD"
+    },
+    {
+      "source_symbol": "PLTR",
+      "name": "PALANTIR TECHNOLOGIES CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "PLTR"
+    },
+    {
+      "source_symbol": "PM",
+      "name": "PHILIP MORRIS INTERNATIONAL INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "PM"
+    },
+    {
+      "source_symbol": "PNC",
+      "name": "PNC FINANCIAL SERVICES GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "PNC"
+    },
+    {
+      "source_symbol": "PNR",
+      "name": "PENTAIR",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "PNR"
+    },
+    {
+      "source_symbol": "PNW",
+      "name": "PINNACLE WEST",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "PNW"
+    },
+    {
+      "source_symbol": "PODD",
+      "name": "INSULET",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "PODD"
+    },
+    {
+      "source_symbol": "PPG",
+      "name": "PPG INDUSTRIES",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "PPG"
+    },
+    {
+      "source_symbol": "PPL",
+      "name": "PPL CORP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "PPL"
+    },
+    {
+      "source_symbol": "PRU",
+      "name": "PRUDENTIAL FINANCIAL INC",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "PRU"
+    },
+    {
+      "source_symbol": "PSA",
+      "name": "PUBLIC STORAGE REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "PSA"
+    },
+    {
+      "source_symbol": "PSKY",
+      "name": "PARAMOUNT SKYDANCE CORP CLASS B",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "PSKY"
+    },
+    {
+      "source_symbol": "PSX",
+      "name": "PHILLIPS 66",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "PSX"
+    },
+    {
+      "source_symbol": "PTC",
+      "name": "PTC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "PTC"
+    },
+    {
+      "source_symbol": "PWR",
+      "name": "QUANTA SERVICES INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "PWR"
+    },
+    {
+      "source_symbol": "PYPL",
+      "name": "PAYPAL HOLDINGS",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "PYPL"
+    },
+    {
+      "source_symbol": "Q",
+      "name": "QNITY ELECTRONICS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "Q"
+    },
+    {
+      "source_symbol": "QCOM",
+      "name": "QUALCOMM",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "QCOM"
+    },
+    {
+      "source_symbol": "RCL",
+      "name": "ROYAL CARIBBEAN GROUP",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "RCL"
+    },
+    {
+      "source_symbol": "RDDT",
+      "name": "REDDIT CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "RDDT"
+    },
+    {
+      "source_symbol": "REG",
+      "name": "REGENCY CENTERS REIT CORP",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "REG"
+    },
+    {
+      "source_symbol": "REGN",
+      "name": "REGENERON PHARMACEUTICALS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "REGN"
+    },
+    {
+      "source_symbol": "RF",
+      "name": "REGIONS FINANCIAL",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "RF"
+    },
+    {
+      "source_symbol": "RJF",
+      "name": "RAYMOND JAMES",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "RJF"
+    },
+    {
+      "source_symbol": "RL",
+      "name": "RALPH LAUREN CLASS A",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "RL"
+    },
+    {
+      "source_symbol": "RMD",
+      "name": "RESMED",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "RMD"
+    },
+    {
+      "source_symbol": "ROK",
+      "name": "ROCKWELL AUTOMATION INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ROK"
+    },
+    {
+      "source_symbol": "ROL",
+      "name": "ROLLINS INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "ROL"
+    },
+    {
+      "source_symbol": "ROP",
+      "name": "ROPER TECHNOLOGIES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ROP"
+    },
+    {
+      "source_symbol": "ROST",
+      "name": "ROSS STORES INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "ROST"
+    },
+    {
+      "source_symbol": "RSG",
+      "name": "REPUBLIC SERVICES INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "RSG"
+    },
+    {
+      "source_symbol": "RTX",
+      "name": "RTX",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "RTX"
+    },
+    {
+      "source_symbol": "RVTY",
+      "name": "REVVITY",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "RVTY"
+    },
+    {
+      "source_symbol": "SBAC",
+      "name": "SBA COMMUNICATIONS REIT CORP CLASS",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "SBAC"
+    },
+    {
+      "source_symbol": "SBUX",
+      "name": "STARBUCKS CORP",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "SBUX"
+    },
+    {
+      "source_symbol": "SCHW",
+      "name": "CHARLES SCHWAB",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "SCHW"
+    },
+    {
+      "source_symbol": "SHW",
+      "name": "SHERWIN WILLIAMS",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "SHW"
+    },
+    {
+      "source_symbol": "SJM",
+      "name": "JM SMUCKER",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "SJM"
+    },
+    {
+      "source_symbol": "SLB",
+      "name": "SLB",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "SLB"
+    },
+    {
+      "source_symbol": "SMCI",
+      "name": "SUPER MICRO COMPUTER INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "SMCI"
+    },
+    {
+      "source_symbol": "SNA",
+      "name": "SNAP ON INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "SNA"
+    },
+    {
+      "source_symbol": "SNDK",
+      "name": "SANDISK",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "SNDK"
+    },
+    {
+      "source_symbol": "SNPS",
+      "name": "SYNOPSYS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "SNPS"
+    },
+    {
+      "source_symbol": "SO",
+      "name": "SOUTHERN",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "SO"
+    },
+    {
+      "source_symbol": "SOLV",
+      "name": "SOLVENTUM",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "SOLV"
+    },
+    {
+      "source_symbol": "SPG",
+      "name": "SIMON PROPERTY GROUP REIT INC",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "SPG"
+    },
+    {
+      "source_symbol": "SPGI",
+      "name": "S&P GLOBAL",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "SPGI"
+    },
+    {
+      "source_symbol": "SRE",
+      "name": "SEMPRA",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "SRE"
+    },
+    {
+      "source_symbol": "STE",
+      "name": "STERIS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "STE"
+    },
+    {
+      "source_symbol": "STLD",
+      "name": "STEEL DYNAMICS INC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "STLD"
+    },
+    {
+      "source_symbol": "STT",
+      "name": "STATE STREET",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "STT"
+    },
+    {
+      "source_symbol": "STX",
+      "name": "SEAGATE TECHNOLOGY HOLDINGS PLC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "STX"
+    },
+    {
+      "source_symbol": "STZ",
+      "name": "CONSTELLATION BRANDS CLASS A",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "STZ"
+    },
+    {
+      "source_symbol": "SW",
+      "name": "SMURFIT WESTROCK PLC",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "SW"
+    },
+    {
+      "source_symbol": "SWK",
+      "name": "STANLEY BLACK & DECKER INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "SWK"
+    },
+    {
+      "source_symbol": "SWKS",
+      "name": "SKYWORKS SOLUTIONS",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "SWKS"
+    },
+    {
+      "source_symbol": "SYF",
+      "name": "SYNCHRONY FINANCIAL",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "SYF"
+    },
+    {
+      "source_symbol": "SYK",
+      "name": "STRYKER",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "SYK"
+    },
+    {
+      "source_symbol": "SYY",
+      "name": "SYSCO",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "SYY"
+    },
+    {
+      "source_symbol": "T",
+      "name": "AT&T",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "T"
+    },
+    {
+      "source_symbol": "TAP",
+      "name": "MOLSON COORS BREWING CLASS B",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "TAP"
+    },
+    {
+      "source_symbol": "TDG",
+      "name": "TRANSDIGM GROUP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "TDG"
+    },
+    {
+      "source_symbol": "TDY",
+      "name": "TELEDYNE TECHNOLOGIES INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TDY"
+    },
+    {
+      "source_symbol": "TECH",
+      "name": "BIO TECHNE",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "TECH"
+    },
+    {
+      "source_symbol": "TEL",
+      "name": "TE CONNECTIVITY PLC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TEL"
+    },
+    {
+      "source_symbol": "TER",
+      "name": "TERADYNE",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TER"
+    },
+    {
+      "source_symbol": "TFC",
+      "name": "TRUIST FINANCIAL",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "TFC"
+    },
+    {
+      "source_symbol": "TGT",
+      "name": "TARGET CORP",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "TGT"
+    },
+    {
+      "source_symbol": "TJX",
+      "name": "TJX",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "TJX"
+    },
+    {
+      "source_symbol": "TKO",
+      "name": "TKO GROUP HOLDINGS INC CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "TKO"
+    },
+    {
+      "source_symbol": "TMO",
+      "name": "THERMO FISHER SCIENTIFIC INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "TMO"
+    },
+    {
+      "source_symbol": "TMUS",
+      "name": "T MOBILE US INC",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "TMUS"
+    },
+    {
+      "source_symbol": "TPL",
+      "name": "TEXAS PACIFIC LAND",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "TPL"
+    },
+    {
+      "source_symbol": "TPR",
+      "name": "TAPESTRY",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "TPR"
+    },
+    {
+      "source_symbol": "TRGP",
+      "name": "TARGA RESOURCES",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "TRGP"
+    },
+    {
+      "source_symbol": "TRMB",
+      "name": "TRIMBLE INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TRMB"
+    },
+    {
+      "source_symbol": "TROW",
+      "name": "T ROWE PRICE GROUP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "TROW"
+    },
+    {
+      "source_symbol": "TRV",
+      "name": "TRAVELERS COMPANIES",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "TRV"
+    },
+    {
+      "source_symbol": "TSCO",
+      "name": "TRACTOR SUPPLY",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "TSCO"
+    },
+    {
+      "source_symbol": "TSLA",
+      "name": "TESLA INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "TSLA"
+    },
+    {
+      "source_symbol": "TSN",
+      "name": "TYSON FOODS INC CLASS A",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "TSN"
+    },
+    {
+      "source_symbol": "TT",
+      "name": "TRANE TECHNOLOGIES PLC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "TT"
+    },
+    {
+      "source_symbol": "TTD",
+      "name": "TRADE DESK INC CLASS A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "TTD"
+    },
+    {
+      "source_symbol": "TTWO",
+      "name": "TAKE TWO INTERACTIVE SOFTWARE",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "TTWO"
+    },
+    {
+      "source_symbol": "TXN",
+      "name": "TEXAS INSTRUMENT INC",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TXN"
+    },
+    {
+      "source_symbol": "TXT",
+      "name": "TEXTRON INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "TXT"
+    },
+    {
+      "source_symbol": "TYL",
+      "name": "TYLER TECHNOLOGIES",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "TYL"
+    },
+    {
+      "source_symbol": "UAL",
+      "name": "UNITED AIRLINES HOLDINGS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "UAL"
+    },
+    {
+      "source_symbol": "UBER",
+      "name": "UBER TECHNOLOGIES",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "UBER"
+    },
+    {
+      "source_symbol": "UDR",
+      "name": "UDR REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "UDR"
+    },
+    {
+      "source_symbol": "UHS",
+      "name": "UNIVERSAL HEALTH SERVICES INC CLAS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "UHS"
+    },
+    {
+      "source_symbol": "ULTA",
+      "name": "ULTA BEAUTY INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "ULTA"
+    },
+    {
+      "source_symbol": "UNH",
+      "name": "UNITEDHEALTH GROUP INC",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "UNH"
+    },
+    {
+      "source_symbol": "UNP",
+      "name": "UNION PACIFIC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "UNP"
+    },
+    {
+      "source_symbol": "UPS",
+      "name": "UNITED PARCEL SERVICE INC CLASS B",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "UPS"
+    },
+    {
+      "source_symbol": "URI",
+      "name": "UNITED RENTALS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "URI"
+    },
+    {
+      "source_symbol": "USB",
+      "name": "US BANCORP",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "USB"
+    },
+    {
+      "source_symbol": "V",
+      "name": "VISA CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "V"
+    },
+    {
+      "source_symbol": "VEEV",
+      "name": "VEEVA SYSTEMS CLASS A",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "VEEV"
+    },
+    {
+      "source_symbol": "VICI",
+      "name": "VICI PPTYS INC",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "VICI"
+    },
+    {
+      "source_symbol": "VLO",
+      "name": "VALERO ENERGY CORP",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "VLO"
+    },
+    {
+      "source_symbol": "VLTO",
+      "name": "VERALTO CORP",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "VLTO"
+    },
+    {
+      "source_symbol": "VMC",
+      "name": "VULCAN MATERIALS",
+      "sector": "Materials",
+      "industry": null,
+      "symbol": "VMC"
+    },
+    {
+      "source_symbol": "VMRK",
+      "name": "VIVMARK RESIDENTIAL",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "VMRK"
+    },
+    {
+      "source_symbol": "VRSK",
+      "name": "VERISK ANALYTICS",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "VRSK"
+    },
+    {
+      "source_symbol": "VRSN",
+      "name": "VERISIGN",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "VRSN"
+    },
+    {
+      "source_symbol": "VRT",
+      "name": "VERTIV HOLDINGS CLASS A",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "VRT"
+    },
+    {
+      "source_symbol": "VRTX",
+      "name": "VERTEX PHARMACEUTICALS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "VRTX"
+    },
+    {
+      "source_symbol": "VST",
+      "name": "VISTRA",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "VST"
+    },
+    {
+      "source_symbol": "VTR",
+      "name": "VENTAS REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "VTR"
+    },
+    {
+      "source_symbol": "VTRS",
+      "name": "VIATRIS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "VTRS"
+    },
+    {
+      "source_symbol": "VZ",
+      "name": "VERIZON COMMUNICATIONS INC",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "VZ"
+    },
+    {
+      "source_symbol": "WAB",
+      "name": "WESTINGHOUSE AIR BRAKE TECHNOLOGIE",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "WAB"
+    },
+    {
+      "source_symbol": "WAT",
+      "name": "WATERS CORP",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "WAT"
+    },
+    {
+      "source_symbol": "WBD",
+      "name": "WARNER BROS. DISCOVERY SERIES A",
+      "sector": "Communication Services",
+      "industry": null,
+      "symbol": "WBD"
+    },
+    {
+      "source_symbol": "WDAY",
+      "name": "WORKDAY CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "WDAY"
+    },
+    {
+      "source_symbol": "WDC",
+      "name": "WESTERN DIGITAL CORP",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "WDC"
+    },
+    {
+      "source_symbol": "WEC",
+      "name": "WEC ENERGY GROUP",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "WEC"
+    },
+    {
+      "source_symbol": "WELL",
+      "name": "WELLTOWER",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "WELL"
+    },
+    {
+      "source_symbol": "WFC",
+      "name": "WELLS FARGO",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "WFC"
+    },
+    {
+      "source_symbol": "WM",
+      "name": "WASTE MANAGEMENT INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "WM"
+    },
+    {
+      "source_symbol": "WMB",
+      "name": "WILLIAMS",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "WMB"
+    },
+    {
+      "source_symbol": "WMT",
+      "name": "WALMART INC",
+      "sector": "Consumer Staples",
+      "industry": null,
+      "symbol": "WMT"
+    },
+    {
+      "source_symbol": "WRB",
+      "name": "WR BERKLEY",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "WRB"
+    },
+    {
+      "source_symbol": "WSM",
+      "name": "WILLIAMS SONOMA INC",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "WSM"
+    },
+    {
+      "source_symbol": "WST",
+      "name": "WEST PHARMACEUTICAL SERVICES",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "WST"
+    },
+    {
+      "source_symbol": "WTW",
+      "name": "WILLIS TOWERS WATSON",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "WTW"
+    },
+    {
+      "source_symbol": "WY",
+      "name": "WEYERHAEUSER REIT",
+      "sector": "Real Estate",
+      "industry": null,
+      "symbol": "WY"
+    },
+    {
+      "source_symbol": "WYNN",
+      "name": "WYNN RESORTS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "WYNN"
+    },
+    {
+      "source_symbol": "XEL",
+      "name": "XCEL ENERGY INC",
+      "sector": "Utilities",
+      "industry": null,
+      "symbol": "XEL"
+    },
+    {
+      "source_symbol": "XOM",
+      "name": "EXXONMOBIL HOLDINGS CORP",
+      "sector": "Energy",
+      "industry": null,
+      "symbol": "XOM"
+    },
+    {
+      "source_symbol": "XYL",
+      "name": "XYLEM INC",
+      "sector": "Industrials",
+      "industry": null,
+      "symbol": "XYL"
+    },
+    {
+      "source_symbol": "XYZ",
+      "name": "BLOCK CLASS A",
+      "sector": "Financials",
+      "industry": null,
+      "symbol": "XYZ"
+    },
+    {
+      "source_symbol": "YUM",
+      "name": "YUM BRANDS",
+      "sector": "Consumer Discretionary",
+      "industry": null,
+      "symbol": "YUM"
+    },
+    {
+      "source_symbol": "ZBH",
+      "name": "ZIMMER BIOMET HOLDINGS",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ZBH"
+    },
+    {
+      "source_symbol": "ZBRA",
+      "name": "ZEBRA TECHNOLOGIES CORP CLASS A",
+      "sector": "Information Technology",
+      "industry": null,
+      "symbol": "ZBRA"
+    },
+    {
+      "source_symbol": "ZTS",
+      "name": "ZOETIS INC CLASS A",
+      "sector": "Health Care",
+      "industry": null,
+      "symbol": "ZTS"
+    }
+  ],
+  "benchmarks": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "DIA"
+  ],
+  "excluded": [
+    {
+      "source_symbol": "HOLX",
+      "name": "HOLOGIC INC",
+      "sector": "Health Care",
+      "industry": null,
+      "reason": "No matching active/tradable Alpaca US equity"
+    }
+  ]
+}

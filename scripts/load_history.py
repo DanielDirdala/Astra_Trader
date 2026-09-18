@@ -1,346 +1,286 @@
+import argparse
 import math
 
-import numpy as np
 import pandas as pd
 
 from src.database import Database
 from src.indicators import add_indicators
 from src.market_data import MarketData
+from src.universe import get_universe
+
+from config import HISTORY_DAYS
 
 
-SYMBOLS = [
-    "AAPL",
-    "MSFT",
-    "NVDA",
-    "AMZN",
-    "GOOGL",
-    "META",
-    "TSLA",
-    "SPY",
-    "QQQ",
-]
-
-TRADING_DAYS = 250
-
-
-def clean_number(value):
+def clean_number(
+    value,
+):
 
     if value is None:
         return None
 
     try:
 
-        value = float(value)
+        number = float(
+            value
+        )
 
         if (
-            math.isnan(value)
-            or math.isinf(value)
+            math.isnan(number)
+            or math.isinf(number)
         ):
+
             return None
 
-        return value
+        return number
 
     except (
-        TypeError,
         ValueError,
+        TypeError,
     ):
 
         return None
 
 
-def clean_integer(value):
+def clean_integer(
+    value,
+):
 
     if value is None:
         return None
 
-    try:
-
-        if pd.isna(value):
-            return None
-
-        return int(value)
-
-    except (
-        TypeError,
-        ValueError,
-    ):
-
+    if pd.isna(value):
         return None
 
+    return int(
+        value
+    )
 
-def row_to_dictionary(row):
 
-    return {
+def convert_row(
+    row,
+):
 
-        "open":
+    keys = [
+        "open",
+        "high",
+        "low",
+        "close",
+
+        "vwap",
+
+        "sma_20",
+        "sma_50",
+        "sma_200",
+
+        "ema_8",
+        "ema_21",
+        "ema_50",
+
+        "rsi_14",
+        "atr_14",
+
+        "macd",
+        "macd_signal",
+        "macd_histogram",
+
+        "avg_volume_20",
+        "volume_ratio",
+
+        "high_20",
+        "low_20",
+
+        "distance_sma_20_pct",
+        "distance_sma_50_pct",
+        "distance_sma_200_pct",
+    ]
+
+    data = {
+        key:
             clean_number(
-                row.get("open")
-            ),
-
-        "high":
-            clean_number(
-                row.get("high")
-            ),
-
-        "low":
-            clean_number(
-                row.get("low")
-            ),
-
-        "close":
-            clean_number(
-                row.get("close")
-            ),
-
-        "volume":
-            clean_integer(
-                row.get("volume")
-            ),
-
-        "trade_count":
-            clean_integer(
-                row.get("trade_count")
-            ),
-
-        "vwap":
-            clean_number(
-                row.get("vwap")
-            ),
-
-        "sma_20":
-            clean_number(
-                row.get("sma_20")
-            ),
-
-        "sma_50":
-            clean_number(
-                row.get("sma_50")
-            ),
-
-        "sma_200":
-            clean_number(
-                row.get("sma_200")
-            ),
-
-        "ema_8":
-            clean_number(
-                row.get("ema_8")
-            ),
-
-        "ema_21":
-            clean_number(
-                row.get("ema_21")
-            ),
-
-        "ema_50":
-            clean_number(
-                row.get("ema_50")
-            ),
-
-        "rsi_14":
-            clean_number(
-                row.get("rsi_14")
-            ),
-
-        "atr_14":
-            clean_number(
-                row.get("atr_14")
-            ),
-
-        "macd":
-            clean_number(
-                row.get("macd")
-            ),
-
-        "macd_signal":
-            clean_number(
-                row.get("macd_signal")
-            ),
-
-        "macd_histogram":
-            clean_number(
-                row.get(
-                    "macd_histogram"
-                )
-            ),
-
-        "avg_volume_20":
-            clean_number(
-                row.get(
-                    "avg_volume_20"
-                )
-            ),
-
-        "volume_ratio":
-            clean_number(
-                row.get(
-                    "volume_ratio"
-                )
-            ),
-
-        "high_20":
-            clean_number(
-                row.get("high_20")
-            ),
-
-        "low_20":
-            clean_number(
-                row.get("low_20")
-            ),
-
-        "distance_sma_20_pct":
-            clean_number(
-                row.get(
-                    "distance_sma_20_pct"
-                )
-            ),
-
-        "distance_sma_50_pct":
-            clean_number(
-                row.get(
-                    "distance_sma_50_pct"
-                )
-            ),
-
-        "distance_sma_200_pct":
-            clean_number(
-                row.get(
-                    "distance_sma_200_pct"
-                )
-            ),
+                row.get(key)
+            )
+        for key
+        in keys
     }
+
+    data["volume"] = (
+        clean_integer(
+            row.get("volume")
+        )
+    )
+
+    data["trade_count"] = (
+        clean_integer(
+            row.get(
+                "trade_count"
+            )
+        )
+    )
+
+    data["raw_data"] = {
+        key: value
+        for key, value
+        in data.items()
+        if value is not None
+    }
+
+    return data
 
 
 def load_symbol(
     symbol,
+    days,
     market,
     database,
 ):
 
-    print()
     print(
         f"Downloading {symbol}..."
     )
 
-    df = market.get_daily_bars(
-        symbol,
-        trading_days=TRADING_DAYS,
+    df = (
+        market
+        .get_daily_bars(
+            symbol,
+            trading_days=days,
+        )
     )
 
     if df.empty:
 
         print(
-            f"No data returned for "
-            f"{symbol}."
+            f"{symbol}: no data."
         )
 
-        return
+        return False
 
     df = add_indicators(
         df
     )
 
-    inserted = 0
-
-    for timestamp, row in df.iterrows():
-
-        data = row_to_dictionary(
-            row
-        )
-
-        data["raw_data"] = {
-            key: value
-            for key, value
-            in data.items()
-            if value is not None
-        }
+    for timestamp, row in (
+        df.iterrows()
+    ):
 
         database.save_market_snapshot(
-            symbol=symbol,
+            symbol=
+                symbol,
 
-            timestamp=timestamp,
+            timestamp=
+                timestamp,
 
-            timeframe="1Day",
+            timeframe=
+                "1Day",
 
-            data=data,
+            data=
+                convert_row(
+                    row
+                ),
         )
-
-        inserted += 1
 
     print(
         f"{symbol}: "
-        f"{inserted} daily snapshots saved."
+        f"{len(df)} snapshots saved."
     )
+
+    return True
 
 
 def main():
 
-    print()
-    print("==============================")
-    print("ASTRA HISTORICAL DATA LOADER")
-    print("==============================")
+    parser = argparse.ArgumentParser()
 
-    market = MarketData()
-
-    database = Database()
-
-    database.log_event(
-        event_type="HISTORY_LOAD_STARTED",
-
-        message=(
-            "Historical market data "
-            "loading started."
+    parser.add_argument(
+        "--symbols",
+        default=None,
+        help=(
+            "Comma-separated symbols. "
+            "Default uses universe.py."
         ),
-
-        metadata={
-            "symbols": SYMBOLS,
-            "days": TRADING_DAYS,
-        },
     )
 
-    for symbol in SYMBOLS:
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=HISTORY_DAYS,
+    )
+
+    args = parser.parse_args()
+
+    if args.symbols:
+
+        symbols = [
+            value.strip().upper()
+            for value
+            in args.symbols.split(",")
+        ]
+
+    else:
+
+        symbols = (
+            get_universe()
+        )
+
+    market = MarketData()
+    database = Database()
+
+    success = 0
+    failed = 0
+
+    print()
+    print(
+        "ASTRA HISTORICAL DATA LOADER"
+    )
+    print(
+        "============================"
+    )
+
+    for symbol in symbols:
 
         try:
 
-            load_symbol(
+            if load_symbol(
                 symbol,
+                args.days,
                 market,
                 database,
-            )
+            ):
+
+                success += 1
 
         except Exception as error:
 
-            print()
+            failed += 1
+
             print(
-                f"ERROR loading "
-                f"{symbol}: {error}"
+                f"ERROR {symbol}: "
+                f"{error}"
             )
 
             database.log_event(
-                event_type=(
-                    "MARKET_DATA_ERROR"
-                ),
+                "MARKET_DATA_ERROR",
 
-                symbol=symbol,
+                symbol=
+                    symbol,
 
-                message=str(
-                    error
-                ),
+                message=
+                    str(error),
             )
 
-    database.log_event(
-        event_type="HISTORY_LOAD_FINISHED",
-
-        message=(
-            "Historical market data "
-            "loading completed."
-        ),
+    print()
+    print(
+        "============================"
     )
 
-    print()
-    print("==============================")
-    print("LOAD COMPLETE")
-    print("==============================")
+    print(
+        f"Successful symbols: "
+        f"{success}"
+    )
+
+    print(
+        f"Failed symbols:     "
+        f"{failed}"
+    )
 
 
 if __name__ == "__main__":

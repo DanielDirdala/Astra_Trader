@@ -1,8 +1,4 @@
-from datetime import (
-    datetime,
-    timedelta,
-    timezone,
-)
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -14,71 +10,40 @@ from config import (
 from src.database import Database
 
 
-NEWS_URL = (
-    "https://data.alpaca.markets/"
-    "v1beta1/news"
-)
+NEWS_URL = "https://data.alpaca.markets/v1beta1/news"
 
 
 class NewsService:
 
-    def __init__(
-        self,
-        database=None,
-    ):
+    def __init__(self, database=None):
 
-        self.db = (
-            database
-            or Database()
-        )
+        self.db = database or Database()
 
     def fetch(
         self,
-        symbol,
-        days=7,
-        limit=20,
+        symbol: str,
+        days: int = 7,
+        limit: int = 20,
     ):
 
-        end = datetime.now(
-            timezone.utc
-        )
+        symbol = symbol.upper()
 
-        start = (
-            end
-            - timedelta(
-                days=days
-            )
-        )
+        end = datetime.now(timezone.utc)
+
+        start = end - timedelta(days=days)
 
         headers = {
-            "APCA-API-KEY-ID":
-                ALPACA_API_KEY,
-
-            "APCA-API-SECRET-KEY":
-                ALPACA_SECRET_KEY,
+            "APCA-API-KEY-ID": ALPACA_API_KEY,
+            "APCA-API-SECRET-KEY": ALPACA_SECRET_KEY,
         }
 
         params = {
-            "symbols":
-                symbol.upper(),
-
-            "start":
-                start.isoformat(),
-
-            "end":
-                end.isoformat(),
-
-            "sort":
-                "desc",
-
-            "limit":
-                min(
-                    limit,
-                    50
-                ),
-
-            "include_content":
-                "false",
+            "symbols": symbol,
+            "start": start.isoformat(),
+            "end": end.isoformat(),
+            "sort": "desc",
+            "limit": min(limit, 50),
+            "include_content": "false",
         }
 
         response = requests.get(
@@ -92,73 +57,55 @@ class NewsService:
 
         payload = response.json()
 
-        return payload.get(
-            "news",
-            []
-        )
+        return payload.get("news", [])
 
     def fetch_and_store(
         self,
-        symbol,
-        days=7,
-        limit=20,
+        symbol: str,
+        days: int = 7,
+        limit: int = 20,
     ):
 
+        symbol = symbol.upper()
+
         articles = self.fetch(
-            symbol,
-            days,
-            limit,
+            symbol=symbol,
+            days=days,
+            limit=limit,
         )
 
-        stored = []
+        stored = 0
 
         for article in articles:
 
-            article_symbols = (
-                article.get(
-                    "symbols"
-                )
-                or []
-            )
+            symbols = article.get("symbols") or []
 
-            if symbol.upper() not in (
+            if symbol not in [
                 item.upper()
-                for item
-                in article_symbols
-            ):
+                for item in symbols
+            ]:
                 continue
 
             event = {
-                "symbol":
-                    symbol.upper(),
+                "symbol": symbol,
 
                 "alpaca_news_id":
                     article.get("id"),
 
                 "published_at":
-                    article.get(
-                        "created_at"
-                    ),
+                    article.get("created_at"),
 
                 "source":
-                    article.get(
-                        "source"
-                    ),
+                    article.get("source"),
 
                 "headline":
-                    article.get(
-                        "headline"
-                    ),
+                    article.get("headline"),
 
                 "summary":
-                    article.get(
-                        "summary"
-                    ),
+                    article.get("summary"),
 
                 "url":
-                    article.get(
-                        "url"
-                    ),
+                    article.get("url"),
 
                 "event_type":
                     "news",
@@ -171,8 +118,6 @@ class NewsService:
                 event
             )
 
-            stored.append(
-                event
-            )
+            stored += 1
 
         return stored
