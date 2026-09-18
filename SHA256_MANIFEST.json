@@ -1,0 +1,14 @@
+{
+  "BLOSSOM_ACCESS_REQUEST.txt": "f22d2cf9e591e424d07432e1026c7d6907b0e17390701df53c107ff911635de1",
+  "MARKET_OPS_SETUP.md": "50cfdc88e2f6abbb9268af16c58ba332b7a8a7bf0ed30761c89eff2bfb5295f4",
+  "TEST_REPORT.txt": "a0a307b1b00ca60512729523b6ca31c3323f8f49a33ee7687a67f208be5996ec",
+  "database/migrations/003_market_operations.sql": "f3abb529d517353199ae5e4b4a64ed9bd6ce0406bc2402b1ff3617cd22b90d09",
+  "requirements-market-ops.txt": "9559374491aec3a5ee5ef7d7323ee2ba92a63d896e6652d647da82de29daba5f",
+  "scripts/daily_us_research.py": "44a241454b8ee20fde6f35ccf759c544c00f968cd5e4ac8172464c24ee928d43",
+  "scripts/paper_order.py": "27525d818d5ac3dacc3e588ed36e145140845d9ba956d5d91d1c1cb553ca625e",
+  "scripts/test_market_ops.py": "e7bdf92f8b8e3ab9e6d8f27c08b7e97238a871e034c2b6c4a628ab0b9dee3128",
+  "scripts/us_market.py": "ea1708244a077428c7d2bc17877d143a489614f64e2235fc46fbcf9ea97b6587",
+  "src/ops_review.py": "b95d24a8a5e62094c7f49f3c879cf5249ef0e7d8a0dac56c0073fd2ed405a39c",
+  "src/paper_tickets.py": "9df9823b7aed1ec410a133997f7ba1f680dc6d4829e2b106b5b0bac739c70296",
+  "src/us_market_ops.py": "60052955d696dc0ccc20d9b300f9620bf3294c8c1439e630bc4bb15d4b55c15c"
+}

@@ -1,0 +1,4 @@
+openai
+pydantic>=2,<3
+python-dotenv
+psycopg[binary]>=3,<4

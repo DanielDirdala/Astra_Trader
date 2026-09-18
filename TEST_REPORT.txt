@@ -1,0 +1,11 @@
+ASTRA US MARKET OPERATIONS - LOCAL CHECKS
+
+85 offline unit tests passed in the authoring environment.
+Command: python -m scripts.test_market_ops
+Python syntax compilation: python -m compileall -q src scripts
+
+Tests cover pure calculations, calendars, freshness, mocked HTTP pagination/retries,
+mocked paper submission state transitions and typed-approval behavior.
+They do not exercise a real PostgreSQL server, Alpaca account or OpenAI account.
+No brokerage orders or model requests were made during these tests.
+A pass is not a guarantee of trading performance, production readiness, or API entitlement.
