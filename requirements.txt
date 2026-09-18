@@ -1,0 +1,6 @@
+alpaca-py
+python-dotenv
+pandas
+numpy
+psycopg[binary]
+requests
