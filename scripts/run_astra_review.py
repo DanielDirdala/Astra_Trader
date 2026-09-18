@@ -1,4 +1,4 @@
-"""Default: preview saved candidates. --send: make one billable research request.
+"""Legacy saved-candidate preview. Paid generation is retired in this command.
 
 No broker imports, no order submission, no approvals. The legacy trading scripts
 must remain disabled: a research_only JSON field is NOT an access-control boundary.
@@ -43,8 +43,9 @@ def process_response(store, review_id, response, payload):
     """Persist usage before validation; commit proposals+report together only on success."""
     usage = store.capture_response(review_id, response)
     if response.get("status") != "completed":
-        status = "INCOMPLETE" if response.get("status") == "incomplete" else "UNKNOWN"
-        reason = (response.get("incomplete_details") or {}).get("reason", response.get("status"))
+        raw_status = response.get("status")
+        status = "INCOMPLETE" if raw_status == "incomplete" else "API_ERROR"
+        reason = (response.get("incomplete_details") or {}).get("reason", raw_status)
         store.fail(review_id, status, f"Response did not complete: {reason}")
         return status, None, usage, []
     if response_has_refusal(response):
@@ -69,6 +70,9 @@ def main() -> int:
     parser.add_argument("--attempt", type=int, default=1,
                         help="Change deliberately for a NEW billable attempt; no automatic retries")
     args = parser.parse_args()
+    if args.send:
+        print("Broad historical paid reviews are retired. Use python -m scripts.trader review --context ID --send.")
+        return 2
     root = Path(__file__).resolve().parents[1]
     from dotenv import load_dotenv
     load_dotenv(root / ".env")
@@ -98,7 +102,7 @@ def main() -> int:
         print(f"  - {warning}")
     if not args.send:
         print("\nPREVIEW ONLY: no OpenAI request or pending proposal was created.")
-        print("To send this exact selection, add --send --selection followed by its ID.")
+        print("For a paid FINALIST review, capture current context then use python -m scripts.trader review.")
         return 0
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     if not api_key:

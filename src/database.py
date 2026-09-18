@@ -18,13 +18,10 @@ class Database:
 
     def __init__(self):
 
-        self.connection_string = (
-            f"host={DB_HOST} "
-            f"port={DB_PORT} "
-            f"dbname={DB_NAME} "
-            f"user={DB_USER} "
-            f"password={DB_PASSWORD}"
-        )
+        self.connection_kwargs = {
+            "host": DB_HOST, "port": DB_PORT, "dbname": DB_NAME,
+            "user": DB_USER, "password": DB_PASSWORD, "connect_timeout": 10,
+        }
 
     # ========================================================
     # CONNECTION
@@ -33,7 +30,7 @@ class Database:
     def connect(self):
 
         return psycopg.connect(
-            self.connection_string,
+            **self.connection_kwargs,
             row_factory=dict_row,
         )
 

@@ -1,3 +1,6 @@
+> HISTORICAL GUIDE: README.md and INSTALL.md describe the consolidated v0.2 workflow.
+> Do not apply older ZIPs or use broad historical paid-review instructions below.
+
 # Astra US market operations - paper prototype v1
 
 ## Scope and safety boundary

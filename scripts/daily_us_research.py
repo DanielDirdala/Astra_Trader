@@ -22,7 +22,7 @@ def main():
             return 1
         context=capture_context(api,store,settings,load_universe())
         write_local(context['context_id']+'.context.json',context)
-        review_context(store,context,os.getenv('ASTRA_MODEL','gpt-6-astra'),args.send)
+        return review_context(store,context,os.getenv('ASTRA_MODEL','gpt-6-astra') or 'gpt-6-astra',args.send)
     finally:
         api.close()
     return 0

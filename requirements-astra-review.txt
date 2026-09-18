@@ -1,4 +1,2 @@
-openai
-pydantic>=2,<3
-python-dotenv
-psycopg[binary]>=3,<4
+# Compatibility alias; use the single requirements.txt.
+-r requirements.txt

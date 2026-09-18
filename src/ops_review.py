@@ -111,50 +111,7 @@ def make_review_store():
     return CurrentReviewStore()
 
 
-def review_context(store,context,model,send=False,max_picks=5):
-    import os
-    from psycopg.types.json import Jsonb
-    from src.astra_review import AstraReviewer,request_spec,request_fingerprint
-    from scripts.run_astra_review import process_response,safe_fail
-    from src.us_market_ops import write_local
-    payload=payload_from_context(context,max_picks)
-    spec=request_spec(payload,model=model,max_output_tokens=16000)
-    spec['instructions']=OPS_PROMPT
-    fp=request_fingerprint(spec,1)
-    print(f"Reviewing {len(payload['candidates'])} candidates; feed={context['feed']}; daily session={context['daily_target_session']}")
-    print('Unconnected: earnings calendar, Blossom, independent backtesting. No model order tools.')
-    path=write_local(fp+'.input.json',{'payload':payload,'request':spec})
-    print(f'Input preview: {path}')
-    if not send:
-        print('Preview only; no OpenAI call. Add --send to authorize one billable request.')
-        return
-    if not os.getenv('OPENAI_API_KEY','').strip():
-        raise ValueError('OPENAI_API_KEY missing.')
-    reviews=make_review_store(); reviews.check_tables()
-    with reviews.connect() as conn:
-        event=conn.execute('''INSERT INTO public.system_events(event_type,message,metadata)
-            VALUES ('CURRENT_CONTEXT_REVIEW','Timestamped context research; paper approval is separate.',%s) RETURNING id''',
-            (Jsonb({'context_id':context['context_id']}),)).fetchone()['id']
-    run,created=reviews.claim(event,payload,spec,fp,1)
-    if not created:
-        print(f"Identical attempt already recorded: {run['id']} ({run['status']}); not sending.")
-        return
-    identifier=run['id']
-    print(f'Review ID: {identifier}')
-    try:
-        response=AstraReviewer(api_key=os.environ['OPENAI_API_KEY']).request_once(spec)
-    except Exception as error:
-        safe_fail(reviews,identifier,'UNKNOWN',f'API outcome uncertain: {type(error).__name__}')
-        raise RuntimeError('Model request failed or timed out. Check usage before creating another capture/request.') from None
-    write_local(str(identifier)+'.response.json',response)
-    try:
-        status,report,usage,decisions=process_response(reviews,identifier,response,payload)
-    except Exception as error:
-        safe_fail(reviews,identifier,'SAVE_ERROR',f'Response saved locally; persistence failed: {type(error).__name__}')
-        raise
-    print(f'Status: {status}; review ID: {identifier}; input tokens: {usage.get("input_tokens")}; output tokens: {usage.get("output_tokens")}')
-    print('No order submitted or approved.')
-    if report:
-        print(report.market_summary)
-        print('Hypothetical BUY ideas:', ', '.join(report.selected_symbols) or 'NONE')
-        print('Pending research record IDs:',decisions)
+def review_context(store, context, model, send=False, max_picks=None):
+    """Compatibility entry point: the only current-market paid path is budgeted."""
+    from src.research_engine import run_review
+    return run_review(store, context, model=model, send=send, max_picks=max_picks)

@@ -85,6 +85,65 @@ class ReviewStore:
                         (fingerprint,))
             return cur.fetchone(), False
 
+
+    def attach_response_id(self, review_id, response_id):
+        """Persist the OpenAI response id before polling so the same request can resume."""
+        if not isinstance(response_id, str) or not response_id:
+            raise ValueError("response_id is required.")
+        with self.connect() as conn, conn.cursor() as cur:
+            cur.execute("""UPDATE public.astra_review_runs
+                           SET response_id=%s
+                           WHERE id=%s AND status='STARTED'
+                             AND (response_id IS NULL OR response_id=%s)
+                           RETURNING id""",
+                        (response_id, review_id, response_id))
+            if cur.fetchone() is None:
+                raise RuntimeError("Could not attach response id to a STARTED review.")
+
+    def reconcile_unknown_cost(self, review_id, cost_low, cost_high, reason):
+        """Manually account for an old uncertain API attempt without inventing token counts."""
+        from decimal import Decimal
+        from psycopg.types.json import Jsonb
+        low, high = Decimal(str(cost_low)), Decimal(str(cost_high))
+        if not low.is_finite() or not high.is_finite() or low < 0 or high < low:
+            raise ValueError("Invalid reconciliation cost range.")
+        reason = str(reason or '').strip()
+        if not reason:
+            raise ValueError("A reconciliation reason is required.")
+        with self.connect() as conn, conn.cursor() as cur:
+            cur.execute("SELECT id,status,error_message FROM public.astra_review_runs WHERE id=%s FOR UPDATE",
+                        (review_id,))
+            run = cur.fetchone()
+            if run is None:
+                raise ValueError("Review not found.")
+            if run['status'] not in ('UNKNOWN','STARTED','SAVE_ERROR','API_ERROR'):
+                raise ValueError("Only unresolved/error reviews can be reconciled manually.")
+            cur.execute("SELECT cost_low_usd,cost_high_usd FROM public.astra_api_usage WHERE review_id=%s",
+                        (review_id,))
+            existing = cur.fetchone()
+            if existing and existing['cost_high_usd'] is not None:
+                raise ValueError("This review already has a recorded cost estimate.")
+            rates = {'manual_reconciliation': True, 'reason': reason,
+                     'note': 'Dashboard-derived application estimate; token counts unknown; not an invoice.'}
+            cur.execute("""INSERT INTO public.astra_api_usage
+                (review_id,cost_low_usd,cost_high_usd,rates,raw_usage)
+                VALUES (%s,%s,%s,%s,%s)
+                ON CONFLICT (review_id) DO UPDATE SET
+                    cost_low_usd=EXCLUDED.cost_low_usd,
+                    cost_high_usd=EXCLUDED.cost_high_usd,
+                    rates=EXCLUDED.rates, raw_usage=EXCLUDED.raw_usage, recorded_at=NOW()""",
+                (review_id, low, high, Jsonb(rates), Jsonb({'manual_reconciliation': True})))
+            cur.execute("""UPDATE public.astra_review_runs
+                           SET status='API_ERROR', finished_at=COALESCE(finished_at,NOW()),
+                               error_message=%s
+                           WHERE id=%s""",
+                        (("RECONCILED: "+reason)[:2000], review_id))
+            cur.execute("""INSERT INTO public.system_events(event_type,message,metadata)
+                           VALUES ('ASTRA_REVIEW_RECONCILED',%s,%s)""",
+                        ('Manual cost reconciliation; no model request made.',
+                         Jsonb({'review_id': str(review_id), 'cost_low_usd': str(low),
+                                'cost_high_usd': str(high), 'reason': reason})))
+
     def capture_response(self, review_id, response):
         """Commit usage BEFORE parsing so incomplete/invalid outputs are accounted for."""
         from psycopg.types.json import Jsonb

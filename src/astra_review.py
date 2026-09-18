@@ -276,17 +276,26 @@ def usage_estimate(response: dict) -> dict:
     model = str(response.get("model", ""))
     if not (model == DEFAULT_MODEL or model.startswith(DEFAULT_MODEL + "-")):
         return result
-    if response.get("service_tier") not in (None, "default", "standard"):
+    tier = response.get("service_tier")
+    if tier not in (None, "default", "standard", "flex"):
         return result
     long_context = counts["input_tokens"] > 272000
-    rates = {"input": "20" if long_context else "10",
-             "cached_input": "2" if long_context else "1",
-             "cache_write": "25" if long_context else "12.5",
-             "output": "75" if long_context else "50",
-             "currency": "USD", "per_tokens": 1000000,
-             "verified_date": "2026-09-17", "long_context": long_context,
-             "source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
-             "note": "Standard text tokens only; range allows cache-write uncertainty. Not an invoice."}
+    flex = tier == "flex"
+    if flex:
+        rates = {"input": "10" if long_context else "5",
+                 "cached_input": "1" if long_context else "0.5",
+                 "cache_write": "12.5" if long_context else "6.25",
+                 "output": "37.5" if long_context else "25"}
+    else:
+        rates = {"input": "20" if long_context else "10",
+                 "cached_input": "2" if long_context else "1",
+                 "cache_write": "25" if long_context else "12.5",
+                 "output": "75" if long_context else "50"}
+    rates.update({"currency": "USD", "per_tokens": 1000000,
+                  "verified_date": "2026-09-18", "long_context": long_context,
+                  "service_tier": "flex" if flex else "standard",
+                  "source": "https://developers.openai.com/api/docs/pricing",
+                  "note": "Token-only estimate; range allows cache-write uncertainty. Not an invoice."})
     uncached = counts["input_tokens"] - counts["cached_input_tokens"]
     common = (Decimal(counts["cached_input_tokens"]) * Decimal(rates["cached_input"])
               + Decimal(counts["output_tokens"]) * Decimal(rates["output"]))

@@ -1,11 +1,45 @@
-ASTRA US MARKET OPERATIONS - LOCAL CHECKS
+ASTRA TRADER CONSOLIDATED v0.2 - TEST REPORT
 
-85 offline unit tests passed in the authoring environment.
-Command: python -m scripts.test_market_ops
-Python syntax compilation: python -m compileall -q src scripts
+Date: 2026-09-18
+Source archive: Astra_Trader-main.zip
+Source SHA256: 3585c3832a2a243247bd4f90ffbda79b7dd9696a855c80381d28cb56e8d071a4
 
-Tests cover pure calculations, calendars, freshness, mocked HTTP pagination/retries,
-mocked paper submission state transitions and typed-approval behavior.
-They do not exercise a real PostgreSQL server, Alpaca account or OpenAI account.
-No brokerage orders or model requests were made during these tests.
-A pass is not a guarantee of trading performance, production readiness, or API entitlement.
+Python: 3.13.5
+Repo offline suite: 268 tests passed, 0 failures, 0 errors.
+Source-file updater: 12 tests passed, 0 failures, 0 errors.
+Total: 280 tests passed. No skipped tests in this environment.
+Compilation: all included Python files parse/compile successfully.
+CLI help and offline goal arithmetic executed successfully.
+
+Existing test modules: sector expansion, research schema/storage, market operations.
+Additional coverage: compact finalists and counts, transaction-serialized budgets,
+unknown billing handling, duplicate generation prevention, disabled legacy order
+paths, schema type checks, history gap refresh/grouping, FIFO lot reconstruction,
+missing basis/cost rejection, protected-file installation, conflict detection,
+idempotent installation, Windows LF/CRLF checkout differences, and rollback after
+simulated write failures.
+
+MOCKED boundaries: all Alpaca/OpenAI requests and database connections in the repo
+suite. A socket-level guard prevented unintended network connections in test_all.
+Installer tests used temporary synthetic repos, never the user's local repo.
+Preview, installation and repeated installation were also checked on a local copy
+of the uploaded source; that installed copy passed the 268 repo tests.
+No real model generation, brokerage submission, authenticated account access,
+PostgreSQL server mutation, or source-code installation on the user's machine.
+
+Limitations:
+- The environment could not reach the package index (DNS resolution failed).
+- A fresh dependency install, OpenAI/Alpaca SDK runtime import, actual SQL server
+  execution, and authenticated API integration were NOT verified here.
+- Existing available pandas/numpy/pydantic/requests/dotenv were used for pure tests.
+- No speedup, bill amount, predictive accuracy or financial returns were measured.
+- No full live/paper end-to-end trade or Windows execution-policy test occurred.
+- Requirements are version ranges, not a fully resolved reproducible lockfile.
+- Passing unit tests is not a claim of production readiness.
+
+Repeat locally:
+  python -m scripts.trader test
+Installer test (from extracted package top level):
+  python test_installer.py
+Read-only runtime/schema check after installing dependencies:
+  python -m scripts.trader doctor --db

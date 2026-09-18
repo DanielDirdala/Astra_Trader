@@ -1,21 +1,16 @@
-# Secrets
 .env
-
-# Python
+.env.*
+!.env.example
 .venv/
 venv/
 __pycache__/
-*.pyc
-*.pyo
-
-# VS Code
+*.py[cod]
+.pytest_cache/
 .vscode/
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Local model inputs, responses, and research reports
-reports/astra/
-reports/market_ops/
-reports/astra/
+reports/
+*.backup
+*.dump
+*.pem
+*.key

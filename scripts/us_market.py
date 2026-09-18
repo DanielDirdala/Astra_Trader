@@ -33,8 +33,7 @@ def main():
     if args.command=='review':
         from src.ops_review import review_context
         context=store.context(args.context)
-        review_context(store,context,os.getenv('ASTRA_MODEL','gpt-6-astra'),args.send)
-        return 0
+        return review_context(store,context,os.getenv('ASTRA_MODEL','gpt-6-astra') or 'gpt-6-astra',args.send)
     from src.universe import get_universe,load_universe
     if args.command in ('sync','adopt-legacy'):
         symbols=sorted({s.strip().upper() for s in args.symbols.split(',') if s.strip()}) if args.symbols else get_universe()

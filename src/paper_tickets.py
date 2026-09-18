@@ -4,6 +4,7 @@ Not a general broker adapter: no live switch, shorting, auto-approval, or resizi
 A request timeout is UNKNOWN. It is NEVER automatically submitted again.
 """
 from __future__ import annotations
+import os
 
 import hashlib
 import re
@@ -129,7 +130,7 @@ class TicketStore(OpsStore):
         payload=run['input_payload']
         if payload.get('ops_version')!='us-market-ops-v1':
             raise ValueError('Legacy historical-only review cannot become a ticket. Use the current-context review command.')
-        if (utcnow()-stamp(payload['context_captured_at'])).total_seconds()>900:
+        if not -5 <= (utcnow()-stamp(payload['context_captured_at'])).total_seconds() <= 900:
             raise ValueError('Context is over 15 minutes old. Refresh capture and review before preparing a new entry.')
         evaluations=run['final_report']['evaluations']
         matches=[e for e in evaluations if e['symbol']==symbol and e['decision']=='BUY']
@@ -171,6 +172,8 @@ class TicketStore(OpsStore):
 
     def submit(self,api,settings,identifier,*,ask=input,ack_earnings_unknown=False):
         from psycopg.types.json import Jsonb
+        if os.getenv('ASTRA_ENABLE_PAPER_SUBMISSION', 'false').lower() != 'true':
+            raise RuntimeError('Paper submission is disabled. Enable ASTRA_ENABLE_PAPER_SUBMISSION=true only after verifying setup.')
         ticket=self.ticket(identifier)
         if ticket['state']!='PREPARED':
             return self.reconcile(api,identifier)[1]  # NEVER resend unknown/submitted attempts
@@ -201,6 +204,8 @@ class TicketStore(OpsStore):
                 if unresolved:
                     raise ValueError('Resolve the previous ambiguous submission in Alpaca before any new entry.')
                 account,checks=get_checks(api,row['order_payload'],settings)
+                if row['submit_before'] <= utcnow():
+                    raise ValueError('Ticket expired during account/quote checks; no order submitted.')
                 if account.get('id')!=row['account_id']:
                     raise ValueError('Account changed after ticket preparation.')
                 conn.execute("""UPDATE public.astra_paper_tickets SET state='SUBMITTING',approved_at=now(),

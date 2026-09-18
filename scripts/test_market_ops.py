@@ -265,6 +265,7 @@ class FakeConnection:
         return ResponseRow()
 
 
+@patch.dict('os.environ', {'ASTRA_ENABLE_PAPER_SUBMISSION': 'true'})
 class SubmissionTests(unittest.TestCase):
     def setUp(self):
         self.order=create_order('AAPL',1,100,95,110,'id1')

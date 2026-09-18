@@ -94,7 +94,9 @@ class Settings:
             raise ValueError('Use feed iex/sip and adjustment raw/split; no silent fallback.')
         if not 1 <= self.batch_size <= 50:
             raise ValueError('Batch size must be 1-50.')
-        if self.backfill_sessions < 250 or not 1 <= self.quote_max_age <= 300:
+        if not 1 <= self.full_refresh_days <= 90:
+            raise ValueError('Full refresh cadence must be 1-90 days.')
+        if not 250 <= self.backfill_sessions <= 600 or not 1 <= self.quote_max_age <= 300:
             raise ValueError('Require >=250 backfill sessions and a quote age of 1-300 seconds.')
         if not math.isfinite(self.max_order_usd) or self.max_order_usd <= 0:
             raise ValueError('Paper order notional cap must be positive.')
@@ -106,6 +108,8 @@ class Settings:
         return cls(feed=os.getenv('OPS_FEED', 'iex'),
                    adjustment=os.getenv('OPS_ADJUSTMENT', 'raw'),
                    batch_size=int(os.getenv('OPS_BATCH_SIZE', '20')),
+                   backfill_sessions=int(os.getenv('OPS_BACKFILL_SESSIONS', '450')),
+                   full_refresh_days=int(os.getenv('OPS_FULL_REFRESH_DAYS', '7')),
                    quote_max_age=int(os.getenv('OPS_QUOTE_MAX_AGE_SECONDS', '60')),
                    max_order_usd=float(os.getenv('OPS_PAPER_MAX_ORDER_USD', '1000')))
 
@@ -202,8 +206,10 @@ class AlpacaHTTP:
         params = {'symbols': symbol, 'start': (now-timedelta(days=7)).isoformat(),
                   'end': now.isoformat(), 'limit': max_articles, 'sort': 'desc', 'include_content': 'false'}
         result = self.get('/v1beta1/news', params)
+        if not isinstance(result, dict) or not isinstance(result.get('news'), list):
+            raise AlpacaReadError('Malformed news response; not treating this as no news.')
         articles = []
-        for item in result.get('news', []):
+        for item in result['news']:
             if symbol not in (item.get('symbols') or []):
                 continue
             published = stamp(item['created_at'])
@@ -254,7 +260,10 @@ class OpsStore:
                 VALUES (%s,%s,%s,%s,%s,%s,%s)
                 ON CONFLICT(symbol,feed,adjustment,session_date) DO UPDATE SET
                 bar_timestamp=EXCLUDED.bar_timestamp,bar=EXCLUDED.bar,
-                provenance=EXCLUDED.provenance,received_at=now()''',
+                provenance=EXCLUDED.provenance,received_at=now()
+                WHERE astra_daily_cache.bar IS DISTINCT FROM EXCLUDED.bar
+                   OR astra_daily_cache.bar_timestamp IS DISTINCT FROM EXCLUDED.bar_timestamp
+                   OR astra_daily_cache.provenance IS DISTINCT FROM EXCLUDED.provenance''',
                 [(s,settings.feed,settings.adjustment,d,stamp(bar['t']),Jsonb(bar),provenance)
                  for s,d,bar in records])
             cur.executemany('''INSERT INTO public.astra_sync_state
@@ -340,7 +349,10 @@ def plan_sync(cache, states, sessions, now, settings, full=False):
         if (last_full and now-stamp(last_full)>timedelta(days=settings.full_refresh_days)) or (not last_full and state.get('first_managed_sync') and now-stamp(state['first_managed_sync'])>timedelta(days=settings.full_refresh_days)):
             is_full=True
         newest=max(bars) if bars else None
-        if not is_full and newest==target and last_sync and now-stamp(last_sync)<timedelta(hours=6):
+        recent = sessions[-min(250, len(sessions)):]
+        missing = [d for d in recent if d not in bars]
+        gap_retry_due = bool(missing and (not last_sync or now-stamp(last_sync) >= timedelta(days=1)))
+        if not is_full and newest==target and last_sync and now-stamp(last_sync)<timedelta(hours=6) and not gap_retry_due:
             continue
         if is_full:
             start=start_full
@@ -351,7 +363,7 @@ def plan_sync(cache, states, sessions, now, settings, full=False):
             # series can remain short; their last full fetch is tracked.
             recent=sessions[-min(250,len(sessions)):]
             missing=[d for d in recent if d not in bars]
-            if missing and last_full is None:
+            if missing and (last_full is None or gap_retry_due):
                 start=min(start, missing[0])
         plans.append({'symbol':symbol,'start':start,'end':target,'full':is_full})
     return plans
@@ -360,15 +372,21 @@ def plan_sync(cache, states, sessions, now, settings, full=False):
 def sync_history(api, store, symbols, settings, *, force_full=False):
     started=time.perf_counter()
     now=utcnow()
-    calendar=api.calendar(now.date()-timedelta(days=900),now.astimezone(NY).date())
+    calendar=api.calendar(now.astimezone(NY).date()-timedelta(days=1200),now.astimezone(NY).date())
     sessions=completed_sessions(calendar,now)
     cache,states=store.load_cache(symbols,settings)
     plans=plan_sync(cache,states,sessions,now,settings,force_full)
+    plans.sort(key=lambda p: (p['start'], p['symbol']))
     print(f'Universe: {len(symbols)}; due: {len(plans)}; unchanged/skipped: {len(symbols)-len(plans)}; target: {sessions[-1]}')
     saved=0
     failed=[]
-    for i in range(0,len(plans),settings.batch_size):
-        group=plans[i:i+settings.batch_size]
+    from itertools import groupby
+    groups = []
+    for _, same_start in groupby(plans, key=lambda p: p['start']):
+        same_start = list(same_start)
+        groups.extend(same_start[i:i+settings.batch_size]
+                      for i in range(0, len(same_start), settings.batch_size))
+    for batch_index, group in enumerate(groups, start=1):
         group_symbols=[p['symbol'] for p in group]
         try:
             data=api.bars(group_symbols,min(p['start'] for p in group),sessions[-1],settings)
@@ -410,7 +428,7 @@ def sync_history(api, store, symbols, settings, *, force_full=False):
             if records:
                 store.save_group(records,state_updates,settings)
             saved+=len(records)
-            print(f'Batch {i//settings.batch_size+1}: {len(state_updates)} symbols; {len(records)} bars upserted in one transaction.')
+            print(f'Batch {batch_index}: {len(state_updates)} symbols; {len(records)} bars upserted in one transaction.')
         except Exception as error:
             failed.extend(s for s in group_symbols if s not in failed)
             print(f'Batch failed ({type(error).__name__}: {error}). No partial batch committed; rerun resumes other completed batches.')
