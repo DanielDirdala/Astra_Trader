@@ -64,6 +64,11 @@ def build_parser():
         part.add_argument('--costs', type=Decimal, help='Verified external costs for this entire window; omitted = UNKNOWN')
         part.add_argument('--target-low', type=Decimal, default=Decimal('100'))
         part.add_argument('--target-high', type=Decimal, default=Decimal('200'))
+    master = sub.add_parser('master', help='Run sync -> capture -> finalists -> optional Astra review; never submits an order')
+    master.add_argument('--skip-sync', action='store_true')
+    master.add_argument('--send-astra', action='store_true')
+    master.add_argument('--per-sector', type=int, default=3)
+    master.add_argument('--extra', type=int, default=5)
     paper = sub.add_parser('paper', help='Separate exact-order human approval workflow; paper only')
     paper.add_argument('paper_args', nargs=argparse.REMAINDER)
     return parser
@@ -137,6 +142,14 @@ def main(argv=None):
                 api.close()
         print(json.dumps(result, indent=2))
         return 0 if args.command == 'goal' or result['complete'] else 1
+    if args.command == 'master':
+        forwarded = []
+        if args.skip_sync:
+            forwarded.append('--skip-sync')
+        if args.send_astra:
+            forwarded.append('--send-astra')
+        forwarded += ['--per-sector', str(args.per_sector), '--extra', str(args.extra)]
+        return delegate('scripts.master', forwarded)
     if args.command == 'paper':
         return delegate('scripts.paper_order', args.paper_args)
     raise AssertionError('Unrecognized command')

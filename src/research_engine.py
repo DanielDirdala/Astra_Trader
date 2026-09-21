@@ -296,19 +296,18 @@ def budget_snapshot(rows):
 
 
 def enforce_budget(rows, policy, allowance, now):
+    """Block unresolved/unknown prior requests, but do not enforce rolling spend/call cooldowns.
+
+    Per-request cost control remains in call_allowance(). Usage is still logged and
+    reported, but a successful older review does not prevent a new deliberate review.
+    """
+    del allowance, now
     state = budget_snapshot(rows)
     if state['unknown_ids']:
         raise ValueError('Prior usage has no reliable estimate. Reconcile these review IDs first: '+
                          ', '.join(state['unknown_ids']))
     if any(row.get('status') in ('STARTED', 'UNKNOWN', 'SAVE_ERROR') for row in rows):
         raise ValueError('An unresolved prior request exists. Inspect/reconcile it; do not create a replacement paid request.')
-    if state['attempts'] >= policy.calls_per_7d:
-        raise ValueError(f'Rolling seven-day attempt cap reached ({policy.calls_per_7d}).')
-    if state['committed_usd'] + allowance > policy.rolling_7d_usd:
-        raise ValueError(f'Rolling seven-day budget: ${state["committed_usd"]:.4f} recorded/reserved + '
-                         f'${allowance:.4f} would exceed ${policy.rolling_7d_usd}.')
-    if rows and any(now-stamp(row['started_at']) < timedelta(hours=policy.min_hours_between_calls) for row in rows):
-        raise ValueError(f'Wait at least {policy.min_hours_between_calls} hours between recorded model attempts.')
     return state
 
 
@@ -403,8 +402,7 @@ def run_review(store, context, model='gpt-6-astra', send=False, max_picks=None,
     fingerprint = request_fingerprint(spec)
     preview = write_local(fingerprint+'.low-cost-input.json', {'request': spec, 'payload': payload, 'audit': audit})
     print('Input preview:', preview)
-    print(f'Call allowance cap=${policy.per_call_usd}; rolling 7-day budget=${policy.rolling_7d_usd}; '
-          f'attempt cap={policy.calls_per_7d}')
+    print(f'Per-call allowance cap=${policy.per_call_usd}; no rolling budget/cooldown is enforced; usage is still logged.')
     if not send:
         print('PREVIEW ONLY. No OpenAI token-count or generation request. Add --send deliberately.')
         return 0
