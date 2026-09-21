@@ -37,8 +37,11 @@ def main() -> int:
             print(f"\n{item['symbol']} | {item['decision']} | assessment: {item['strength']}")
             print(item["thesis"])
             if item["decision"] == "BUY":
+                print(f"Setup: {item.get('setup_type')} | risk tier: {item.get('risk_tier')}")
                 print(f"Hypothetical entry: {item['entry_price']} | stop: {item['stop_price']} | target: {item['target_price']}")
-                print(f"Holding-day estimate: {item['expected_holding_days']}")
+                print(f"Astra quantity: {item.get('suggested_quantity')} | holding days: {item['expected_holding_days']} | time stop: {item.get('time_stop_days')}")
+                if item.get('entry_rationale'): print(f"Entry rationale: {item['entry_rationale']}")
+                if item.get('exit_rule'): print(f"Indicator exit rule: {item['exit_rule']}")
                 print(f"Bull case: {item['bull_case']}\nBear case: {item['bear_case']}")
                 print(f"Invalidation: {item['invalidation']}")
             for risk in item["risks"]:

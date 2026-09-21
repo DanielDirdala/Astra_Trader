@@ -136,9 +136,25 @@ class TicketStore(OpsStore):
         matches=[e for e in evaluations if e['symbol']==symbol and e['decision']=='BUY']
         if len(matches)!=1:
             raise ValueError('This symbol is not a unique BUY proposal in the selected review.')
+        item=matches[0]
+        from src.trade_planner import SizingPolicy, build_trade_plans, paper_quantity
+        sizing = SizingPolicy.from_payload(payload.get('sizing_policy'))
+        plans = {p['symbol']: p for p in build_trade_plans(run['final_report'], payload, sizing)}
+        plan = plans.get(symbol)
+        if not plan or not plan.get('valid') or not plan.get('validated_quantity'):
+            raise ValueError('This BUY does not have a valid Python-sized trade plan. Re-run master with configured strategy capital.')
+        paper_max = paper_quantity(plan, settings.max_order_usd)
+        if paper_max is None:
+            raise ValueError('Current paper-order notional cap does not permit one share of this validated plan.')
+        if qty > paper_max:
+            raise ValueError(f'Requested quantity {qty} exceeds the validated PAPER maximum {paper_max} shares.')
         item=matches[0]; identifier=uuid4(); client_id='astra-'+identifier.hex
         order=create_order(symbol,qty,item['entry_price'],item['stop_price'],item['target_price'],client_id)
         account,checks=get_checks(api,order,settings)
+        checks['validated_strategy_quantity']=plan['validated_quantity']
+        checks['validated_paper_max_quantity']=paper_max
+        checks['risk_tier']=plan.get('risk_tier')
+        checks['planned_open_risk_usd_for_requested_qty']=str(Decimal(str(plan['risk_per_share']))*qty)
         if not account.get('id'):
             raise ValueError('Paper account identity is missing.')
         expires=utcnow()+timedelta(minutes=5)

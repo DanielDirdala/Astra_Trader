@@ -33,7 +33,11 @@ def article(symbol, index=1, headline=None):
 
 def candidate(symbol='AAA', sector='Tech', score=10):
     return {'symbol': symbol, 'sector': sector, 'industry': None,
-        'quantitative': {'price': 100., 'atr_pct': 2., 'technical_score': score,
+        'quantitative': {'price': 100., 'atr_pct': 2., 'atr_14': 2., 'technical_score': score,
+                        'return_5d': 4., 'return_20d': 8., 'relative_strength_spy': 5.,
+                        'relative_strength_qqq': 4., 'momentum_score': 5., 'volume_ratio': 1.1,
+                        'rsi_14': 55., 'sma_20': 95., 'sma_50': 90., 'sma_200': 80.,
+                        'macd_histogram': 1., 'high_20': 105., 'max_abs_daily_return_20d_pct': 5.,
                         'session_date': '2026-09-17', 'history_provenance': ['fixture']},
         'news_fetch_status': 'ok', 'recent_news': [article(symbol, i) for i in range(1, 6)],
         'live_market': {'quote_timestamp': NOW.isoformat(), 'bid': 100., 'ask': 100.1,
@@ -181,12 +185,12 @@ class CostTests(unittest.TestCase):
         with self.assertRaises(ValueError): call_allowance(8001,CostPolicy())
     def test_call_price_limit(self):
         with self.assertRaises(ValueError): call_allowance(6000,replace(CostPolicy(),per_call_usd=Decimal('.10')))
-    def test_week_budget(self):
-        with self.assertRaises(ValueError): enforce_budget([row('.80')],CostPolicy(),Decimal('.30'),NOW)
-    def test_attempt_cap(self):
-        with self.assertRaises(ValueError): enforce_budget([row(),row()],CostPolicy(),Decimal('.10'),NOW)
-    def test_cooldown(self):
-        with self.assertRaises(ValueError): enforce_budget([row(hours=1)],CostPolicy(),Decimal('.30'),NOW)
+    def test_week_budget_not_enforced(self):
+        self.assertEqual(enforce_budget([row('.80')],CostPolicy(),Decimal('.30'),NOW)['committed_usd'], Decimal('.80'))
+    def test_attempt_cap_not_enforced(self):
+        self.assertEqual(enforce_budget([row(),row()],CostPolicy(),Decimal('.10'),NOW)['attempts'], 2)
+    def test_cooldown_not_enforced(self):
+        self.assertEqual(enforce_budget([row(hours=1)],CostPolicy(),Decimal('.30'),NOW)['attempts'], 1)
     def test_unknown_not_zero(self):
         with self.assertRaises(ValueError): enforce_budget([row(None)],CostPolicy(),Decimal('.30'),NOW)
     def test_unresolved_timeout(self):
@@ -270,10 +274,11 @@ class SendPathTests(unittest.TestCase):
 
     def response(self, state='completed'):
         ctx=context(); payload,_=build_finalist_input(ctx,CostPolicy(),NOW)
-        evaluations=[{'symbol':c['symbol'],'decision':'WATCH','strength':'low','thesis':'More evidence needed.',
-                     'bull_case':'Momentum could persist.','bear_case':'Trend could reverse.',
-                     'risks':['Unknown earnings.'],'invalidation':'Not an entry.',
+        evaluations=[{'symbol':c['symbol'],'decision':'WATCH','strength':'low','setup_type':'NONE',
+                     'thesis':'More evidence needed.','bull_case':'Momentum could persist.','bear_case':'Trend could reverse.',
+                     'risks':['Unknown earnings.'],'invalidation':'Not an entry.','entry_rationale':'',
                      'entry_price':None,'stop_price':None,'target_price':None,'expected_holding_days':None,
+                     'time_stop_days':None,'exit_rule':'','risk_tier':None,'suggested_quantity':None,
                      'evidence_ids':[],'missing_information':['Earnings date.']} for c in payload['candidates']]
         report={'market_summary':'Fixture only.','coverage_limitations':['Shortlist only.'],
                 'selected_symbols':[],'evaluations':evaluations,'additional_research':[]}
@@ -322,15 +327,16 @@ class SendPathTests(unittest.TestCase):
             code=run_review(None,context(),send=True,now=NOW,counter=counter,requester=requester,reviews=reviews)
         self.assertEqual(code,0); counter.assert_not_called(); requester.assert_not_called()
 
-    def test_out_of_budget_never_counts_or_generates(self):
-        reviews=self.mocks(); requester=MagicMock(); counter=MagicMock()
+    def test_prior_spend_does_not_block_new_deliberate_review(self):
+        reviews=self.mocks(); reviews.capture_response.side_effect=lambda _id,res:usage_estimate(res); reviews.complete.return_value=[]
+        requester=MagicMock(return_value=self.response()); counter=MagicMock(return_value=6000)
         with patch.dict('os.environ',{'OPENAI_API_KEY':'fake'}), \
              patch('src.research_engine.utcnow',return_value=NOW), \
              patch('src.research_engine.write_local',return_value='mock.json'), \
-             patch.object(BudgetStore,'recent',return_value=[row('1.02')]):
-            with self.assertRaises(ValueError):
-                run_review(None,context(),send=True,now=NOW,counter=counter,requester=requester,reviews=reviews)
-        counter.assert_not_called(); requester.assert_not_called()
+             patch.object(BudgetStore,'recent',return_value=[row('1.02')]), \
+             patch.object(BudgetStore,'claim',return_value=({'id':uuid4(),'status':'STARTED'},True)):
+            self.assertEqual(run_review(None,context(),send=True,now=NOW,counter=counter,requester=requester,reviews=reviews),0)
+        counter.assert_called_once(); requester.assert_called_once()
 
 
 class ProfitArithmeticTests(unittest.TestCase):

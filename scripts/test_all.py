@@ -9,6 +9,7 @@ MODULES = (
     'scripts.test_astra_review',
     'scripts.test_market_ops',
     'scripts.test_research_engine',
+    'scripts.test_trade_planner',
     'scripts.test_background_review',
     'scripts.test_profit_tracking',
     'scripts.test_consolidated',

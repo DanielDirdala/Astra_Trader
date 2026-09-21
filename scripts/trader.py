@@ -69,6 +69,7 @@ def build_parser():
     master.add_argument('--send-astra', action='store_true')
     master.add_argument('--per-sector', type=int, default=3)
     master.add_argument('--extra', type=int, default=5)
+    master.add_argument('--capital', type=Decimal, help='Capital allocated to the Astra strategy for share sizing')
     paper = sub.add_parser('paper', help='Separate exact-order human approval workflow; paper only')
     paper.add_argument('paper_args', nargs=argparse.REMAINDER)
     return parser
@@ -149,6 +150,8 @@ def main(argv=None):
         if args.send_astra:
             forwarded.append('--send-astra')
         forwarded += ['--per-sector', str(args.per_sector), '--extra', str(args.extra)]
+        if args.capital is not None:
+            forwarded += ['--capital', str(args.capital)]
         return delegate('scripts.master', forwarded)
     if args.command == 'paper':
         return delegate('scripts.paper_order', args.paper_args)

@@ -18,7 +18,7 @@ from uuid import uuid4
 
 from src.us_market_ops import canonical, number, stamp, utcnow, write_local
 
-POLICY_VERSION = 'astra-consolidated-v0.3-bgflex'
+POLICY_VERSION = 'astra-consolidated-v0.4-trade-plan'
 BUDGET_LOCK = 84392761
 PRICE_SOURCE = 'https://developers.openai.com/api/docs/models/gpt-6-astra'
 VERIFIED_DATE = '2026-09-18'
@@ -27,34 +27,91 @@ VERIFIED_DATE = '2026-09-18'
 @dataclass(frozen=True)
 class CostPolicy:
     finalists: int = 3
-    max_picks: int = 2
+    max_picks: int = 3
     per_sector: int = 2
     news_per_symbol: int = 3
+
+    # User-configurable.
+    # No artificial application ceiling.
     max_input_tokens: int = 8000
     max_output_tokens: int = 3000
-    per_call_usd: Decimal = Decimal('0.20')
-    rolling_7d_usd: Decimal = Decimal('1.00')
+
+    per_call_usd: Decimal = Decimal("0.20")
+
+    # Retained for compatibility/logging.
+    rolling_7d_usd: Decimal = Decimal("1.00")
     calls_per_7d: int = 2
-    min_hours_between_calls: int = 6
+
+    # 0 disables cooldown.
+    min_hours_between_calls: int = 0
+
     quote_max_age: int = 60
+    min_setup_score: int = 50
 
     def __post_init__(self):
-        limits = {
-            'finalists': (1, 5), 'max_picks': (1, 5), 'per_sector': (1, 5),
-            'news_per_symbol': (1, 5), 'max_input_tokens': (1000, 20000),
-            'max_output_tokens': (2000, 8000), 'calls_per_7d': (1, 20),
-            'min_hours_between_calls': (1, 168), 'quote_max_age': (1, 300),
+
+        integer_minimums = {
+            "finalists": 1,
+            "max_picks": 1,
+            "per_sector": 1,
+            "news_per_symbol": 1,
+
+            # Only require a positive integer.
+            "max_input_tokens": 1,
+            "max_output_tokens": 1,
+
+            "calls_per_7d": 1,
+            "min_hours_between_calls": 0,
+            "quote_max_age": 1,
+            "min_setup_score": 0,
         }
-        for key, (low, high) in limits.items():
-            value = getattr(self, key)
-            if type(value) is not int or not low <= value <= high:
-                raise ValueError(f'{key} must be an integer from {low} to {high}.')
+
+        for key, minimum in integer_minimums.items():
+
+            value = getattr(
+                self,
+                key,
+            )
+
+            if (
+                type(value) is not int
+                or value < minimum
+            ):
+
+                raise ValueError(
+                    f"{key} must be an integer "
+                    f">= {minimum}."
+                )
+
         if self.max_picks > self.finalists:
-            raise ValueError('max_picks cannot exceed finalists.')
-        for key in ('per_call_usd', 'rolling_7d_usd'):
-            value = getattr(self, key)
-            if not isinstance(value, Decimal) or not value.is_finite() or value <= 0:
-                raise ValueError(f'{key} must be a positive finite Decimal.')
+
+            raise ValueError(
+                "max_picks cannot exceed finalists."
+            )
+
+        for key in (
+            "per_call_usd",
+            "rolling_7d_usd",
+        ):
+
+            value = getattr(
+                self,
+                key,
+            )
+
+            if (
+                not isinstance(
+                    value,
+                    Decimal,
+                )
+                or not value.is_finite()
+                or value <= 0
+            ):
+
+                raise ValueError(
+                    f"{key} must be a positive "
+                    "finite Decimal."
+                )
 
     @classmethod
     def load(cls):
@@ -63,14 +120,15 @@ class CostPolicy:
         load_dotenv(ROOT / '.env')
         ints = {
             'finalists': ('ASTRA_FINALISTS', 3),
-            'max_picks': ('ASTRA_MAX_PICKS', 2),
+            'max_picks': ('ASTRA_MAX_PICKS', 3),
             'per_sector': ('ASTRA_FINALISTS_PER_SECTOR', 2),
             'news_per_symbol': ('ASTRA_NEWS_PER_FINALIST', 3),
             'max_input_tokens': ('ASTRA_MAX_INPUT_TOKENS', 8000),
             'max_output_tokens': ('ASTRA_MAX_OUTPUT_TOKENS', 3000),
             'calls_per_7d': ('ASTRA_MAX_CALLS_7D', 2),
-            'min_hours_between_calls': ('ASTRA_MIN_HOURS_BETWEEN_CALLS', 6),
+            'min_hours_between_calls': ('ASTRA_MIN_HOURS_BETWEEN_CALLS', 0),
             'quote_max_age': ('OPS_QUOTE_MAX_AGE_SECONDS', 60),
+            'min_setup_score': ('ASTRA_MIN_SETUP_SCORE', 50),
         }
         kwargs = {key: int(os.getenv(env, str(default)))
                   for key, (env, default) in ints.items()}
@@ -125,17 +183,22 @@ def compact_news(articles, limit, now):
     return output
 
 
-def build_finalist_input(context, policy, now=None):
+def build_finalist_input(context, policy, now=None, sizing_policy=None):
     from src.ops_review import payload_from_context
+    from src.finalist_quality import analyze_candidate, exclusion_reason
+    from src.trade_planner import SizingPolicy
     now = now or utcnow()
+    sizing_policy = sizing_policy or SizingPolicy.load()
     payload = copy.deepcopy(payload_from_context(context, min(policy.max_picks, policy.finalists), now))
+    payload['sizing_policy'] = sizing_policy.model_payload()
     if type(context.get('market_clock', {}).get('is_open')) is not bool:
         raise ValueError('Broker market-open status is unavailable.')
     market_open = context['market_clock']['is_open']
     occupied = {p.get('symbol') for p in context.get('positions', [])}
     occupied |= {o.get('symbol') for o in context.get('open_orders', [])}
     pool, excluded = [], {}
-    for candidate in payload['candidates']:
+    for raw_candidate in payload['candidates']:
+        candidate = analyze_candidate(raw_candidate)
         symbol = candidate['symbol']
         q, live = candidate.get('quantitative', {}), candidate.get('live_market', {})
         reason = None
@@ -147,7 +210,9 @@ def build_finalist_input(context, policy, now=None):
             reason = 'Completed daily session does not match the capture target.'
         elif number(q.get('technical_score')) is None or (number(q.get('price')) or 0) <= 0:
             reason = 'Invalid price or numerical screening score.'
-        elif market_open:
+        else:
+            reason = exclusion_reason(candidate, policy.min_setup_score)
+        if reason is None and market_open:
             try:
                 age = (now-stamp(live['quote_timestamp'])).total_seconds()
             except (KeyError, ValueError, TypeError):
@@ -162,7 +227,7 @@ def build_finalist_input(context, policy, now=None):
             excluded[symbol] = reason
         else:
             pool.append(candidate)
-    pool.sort(key=lambda item: (-float(item['quantitative']['technical_score']), item['symbol']))
+    pool.sort(key=lambda item: (-float(item['quality_profile']['finalist_rank_score']), item['symbol']))
     finalists, sectors = [], {}
     for item in pool:
         sector = item.get('sector') or 'Unknown'
@@ -200,18 +265,22 @@ def build_finalist_input(context, policy, now=None):
         'version': POLICY_VERSION, 'source_shortlist_size': len(context['candidates']),
         'eligible_source_candidates': len(pool), 'reviewed_finalists': len(selected),
         'sector_cap': policy.per_sector, 'news_per_finalist': policy.news_per_symbol,
-        'selection_rule': 'Existing Python technical_score descending, then symbol; sector cap applied.',
+        'min_setup_score': policy.min_setup_score,
+        'selection_rule': 'Hard-event gate -> classified long-swing setup -> setup-quality threshold -> finalist_rank_score -> sector cap.',
         'not_a_trained_predictor': True,
     }
     payload['application_warnings'] += [
         'Only Python-selected finalists receive Astra review. Omitted stocks may be better investments.',
+        'Corporate-action screening is a headline heuristic, not a complete corporate-actions or earnings feed.',
         'News is a small latest-item sample. Omitted adverse facts may exist; no full-news analysis was performed.',
         'A fixed dollar profit target is NOT supplied to the model and must NOT influence order sizing.',
+        'Astra may propose a share quantity, but Python independently caps it by stop risk and portfolio limits.',
+        'Indicator-based exit rules are research instructions; only bracket stop/target prices are encoded in a paper order.',
         'Shorter reasoning/output is a cost-quality tradeoff, not proof of equal decision quality.',
     ]
-    # Do not send dozens of rejected records to the model; store them in the preview only.
     audit = {'excluded': excluded, 'source_symbols': [c['symbol'] for c in context['candidates']],
              'finalists': [c['symbol'] for c in selected],
+             'finalist_profiles': {c['symbol']: c.get('quality_profile') for c in selected},
              'note': 'This final-entry selector excludes existing holdings/orders; it does not monitor exits.'}
     canonical(payload)
     return payload, audit
@@ -226,9 +295,10 @@ def economical_spec(payload, model, policy):
     spec['instructions'] = OPS_PROMPT + '''\nCost-controlled FINALIST review only. The shared_market_context applies to all candidates.
 Python has already calculated indicators, returns and scores. Do not recalculate or narrate
 those calculations. Evaluate only supplied finalists; do not fill the BUY quota.
-Keep market_summary under 100 words; each thesis/bull_case/bear_case/invalidation under
+Keep market_summary under 100 words; each thesis/bull_case/bear_case/invalidation/entry_rationale/exit_rule under
 35 words; risks and missing_information at most 3 short items each; additional_research
-at most 2 items. Preserve material negative evidence. All prior data/approval restrictions apply.
+at most 2 items. For BUY, use the supplied indicators/quality profile to choose entry, stop, target, risk tier and quantity.
+Do not fill the BUY quota. Preserve material negative evidence. All prior data/approval restrictions apply.
 '''
     spec['reasoning'] = {'effort': 'low'}
     spec['text']['verbosity'] = 'low'
@@ -382,7 +452,7 @@ class BudgetStore:
 
 
 def run_review(store, context, model='gpt-6-astra', send=False, max_picks=None,
-               policy=None, now=None, counter=None, requester=None, reviews=None):
+               policy=None, sizing_policy=None, now=None, counter=None, requester=None, reviews=None):
     from src.ops_review import make_review_store
     from src.astra_review import request_fingerprint
     from scripts.run_astra_review import process_response, safe_fail
@@ -390,7 +460,7 @@ def run_review(store, context, model='gpt-6-astra', send=False, max_picks=None,
     policy = policy or CostPolicy.load()
     if max_picks is not None:
         policy = replace(policy, max_picks=min(int(max_picks), policy.max_picks, policy.finalists))
-    payload, audit = build_finalist_input(context, policy, now)
+    payload, audit = build_finalist_input(context, policy, now, sizing_policy=sizing_policy)
     print(f'Python source shortlist: {len(context["candidates"])}; Astra finalists: {len(payload["candidates"])}')
     print('Finalists:', ', '.join(audit['finalists']) or 'NONE')
     print('Maximum output tokens including reasoning:', policy.max_output_tokens)

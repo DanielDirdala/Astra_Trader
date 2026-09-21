@@ -41,15 +41,18 @@ def report_data():
     return {"market_summary": "Insufficient verified freshness for current trading.",
             "coverage_limitations": ["Partial shortlist only."], "selected_symbols": ["AAA"],
             "additional_research": [], "evaluations": [
-                {"symbol": "AAA", "decision": "BUY", "strength": "medium", "thesis": "Hypothetical setup.",
-                 "bull_case": "Continuation.", "bear_case": "Failure.", "risks": ["Gap risk."],
-                 "invalidation": "Support fails.", "entry_price": 100.0, "stop_price": 95.0,
-                 "target_price": 110.0, "expected_holding_days": 10, "evidence_ids": ["NEWS:AAA:1"],
+                {"symbol": "AAA", "decision": "BUY", "strength": "medium", "setup_type": "TREND_CONTINUATION",
+                 "thesis": "Hypothetical setup.", "bull_case": "Continuation.", "bear_case": "Failure.",
+                 "risks": ["Gap risk."], "invalidation": "Support fails.", "entry_rationale": "Enter near support.",
+                 "entry_price": 100.0, "stop_price": 95.0, "target_price": 110.0,
+                 "expected_holding_days": 10, "time_stop_days": 10, "exit_rule": "Exit on daily close below SMA20.",
+                 "risk_tier": "medium", "suggested_quantity": None, "evidence_ids": ["NEWS:AAA:1"],
                  "missing_information": ["Portfolio context and live quotes."]},
-                {"symbol": "BBB", "decision": "PASS", "strength": "low", "thesis": "No setup.",
-                 "bull_case": "", "bear_case": "", "risks": [], "invalidation": "",
-                 "entry_price": None, "stop_price": None, "target_price": None,
-                 "expected_holding_days": None, "evidence_ids": [], "missing_information": []}]}
+                {"symbol": "BBB", "decision": "PASS", "strength": "low", "setup_type": "NONE",
+                 "thesis": "No setup.", "bull_case": "", "bear_case": "", "risks": [], "invalidation": "",
+                 "entry_rationale": "", "entry_price": None, "stop_price": None, "target_price": None,
+                 "expected_holding_days": None, "time_stop_days": None, "exit_rule": "",
+                 "risk_tier": None, "suggested_quantity": None, "evidence_ids": [], "missing_information": []}]}
 
 
 def response_data(status="completed"):
@@ -145,7 +148,9 @@ class SchemaTests(unittest.TestCase):
     def test_no_trades_valid(self):
         data = report_data(); data["selected_symbols"] = []
         item = data["evaluations"][0]; item["decision"] = "WATCH"
-        for k in ["entry_price", "stop_price", "target_price", "expected_holding_days"]: item[k] = None
+        for k in ["entry_price", "stop_price", "target_price", "expected_holding_days", "time_stop_days", "risk_tier", "suggested_quantity"]:
+            item[k] = None
+        item["setup_type"] = "NONE"; item["entry_rationale"] = ""; item["exit_rule"] = ""
         self.assertEqual(validate_review(json.dumps(data), self.payload).selected_symbols, [])
 
     def test_unknown_stock_fails(self):
@@ -187,9 +192,9 @@ class SchemaTests(unittest.TestCase):
     def test_empty_thesis_fails(self):
         data = report_data(); data["evaluations"][0]["thesis"] = " "; self.assert_invalid(data)
 
-    def test_nullable_stop_supported(self):
+    def test_buy_requires_complete_stop(self):
         data = report_data(); data["evaluations"][0]["stop_price"] = None
-        self.assertIsNone(validate_review(json.dumps(data), self.payload).evaluations[0].stop_price)
+        self.assert_invalid(data)
 
     def test_json_schema_has_no_optional_properties(self):
         def walk(value):
