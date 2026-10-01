@@ -184,6 +184,19 @@ WATCH must NOT include executable trade fields:
 
 Those numeric/order fields must be null.
 
+For WATCH, provide useful monitoring levels when the supplied evidence supports them:
+- watch_buy_zone_low / watch_buy_zone_high: preferred pullback zone
+- watch_breakout_trigger: alternative price breakout trigger when appropriate
+- watch_stop_zone_low / watch_stop_zone_high: hypothetical invalidation area
+- watch_target_1 / watch_target_2: hypothetical objective zones
+- watch_trigger_condition: short condition describing what must improve
+- watch_expires_after_sessions: 1-30 sessions
+
+These WATCH fields are research ranges only. They are NOT executable orders.
+If a defensible level cannot be supported, return null for that numeric field.
+At least a buy zone OR breakout trigger should normally be supplied for WATCH when
+current/reference price data are sufficient.
+
 
 PASS REQUIREMENTS
 =================
@@ -192,6 +205,8 @@ PASS may retain a setup_type if a recognizable setup exists but
 is rejected for other reasons.
 
 PASS must NOT include executable trade fields.
+PASS must also return all watch_* numeric fields null, watch_trigger_condition as
+an empty string, and watch_expires_after_sessions null.
 
 The numeric/order fields listed above must be null.
 
@@ -331,6 +346,18 @@ class CandidateEvaluation(StrictModel):
             "Python independently validates and caps this quantity."
         )
     )
+
+    # WATCH-only planning fields. These are monitoring/reference levels,
+    # never executable order fields. BUY and PASS must return them null.
+    watch_buy_zone_low: float | None
+    watch_buy_zone_high: float | None
+    watch_breakout_trigger: float | None
+    watch_stop_zone_low: float | None
+    watch_stop_zone_high: float | None
+    watch_target_1: float | None
+    watch_target_2: float | None
+    watch_trigger_condition: str
+    watch_expires_after_sessions: int | None
 
     evidence_ids: list[str] = Field(
         description=(
@@ -907,6 +934,35 @@ def validate_review(
                 f"for {item.symbol}."
             )
 
+        watch_values = {
+            "watch_buy_zone_low": item.watch_buy_zone_low,
+            "watch_buy_zone_high": item.watch_buy_zone_high,
+            "watch_breakout_trigger": item.watch_breakout_trigger,
+            "watch_stop_zone_low": item.watch_stop_zone_low,
+            "watch_stop_zone_high": item.watch_stop_zone_high,
+            "watch_target_1": item.watch_target_1,
+            "watch_target_2": item.watch_target_2,
+        }
+        for name, value in watch_values.items():
+            if value is not None and (not math.isfinite(value) or value <= 0):
+                raise ValueError(f"Invalid {name} for {item.symbol}.")
+        if (item.watch_buy_zone_low is None) != (item.watch_buy_zone_high is None):
+            raise ValueError(f"WATCH buy zone must supply both bounds for {item.symbol}.")
+        if (item.watch_stop_zone_low is None) != (item.watch_stop_zone_high is None):
+            raise ValueError(f"WATCH stop zone must supply both bounds for {item.symbol}.")
+        if (item.watch_buy_zone_low is not None and
+                item.watch_buy_zone_low > item.watch_buy_zone_high):
+            raise ValueError(f"WATCH buy zone is reversed for {item.symbol}.")
+        if (item.watch_stop_zone_low is not None and
+                item.watch_stop_zone_low > item.watch_stop_zone_high):
+            raise ValueError(f"WATCH stop zone is reversed for {item.symbol}.")
+        if (item.watch_target_1 is not None and item.watch_target_2 is not None and
+                item.watch_target_1 > item.watch_target_2):
+            raise ValueError(f"WATCH targets are reversed for {item.symbol}.")
+        if (item.watch_expires_after_sessions is not None and
+                not 1 <= item.watch_expires_after_sessions <= 30):
+            raise ValueError(f"Invalid WATCH expiry for {item.symbol}.")
+
         # ====================================================
         # WATCH / PASS
         # ====================================================
@@ -926,16 +982,26 @@ def validate_review(
                 item.suggested_quantity,
             )
 
-            if any(
-                value is not None
-                for value
-                in prohibited_trade_fields
-            ):
+            if any(value is not None for value in prohibited_trade_fields):
                 raise ValueError(
-                    "WATCH/PASS executable "
-                    "trade fields must be null "
+                    "WATCH/PASS executable trade fields must be null "
                     f"for {item.symbol}."
                 )
+
+            if item.decision == "WATCH":
+                has_zone = (
+                    item.watch_buy_zone_low is not None
+                    or item.watch_breakout_trigger is not None
+                )
+                if has_zone and not item.watch_trigger_condition.strip():
+                    raise ValueError(
+                        f"WATCH with a price trigger requires watch_trigger_condition for {item.symbol}."
+                    )
+            else:  # PASS
+                if any(value is not None for value in watch_values.values()):
+                    raise ValueError(f"PASS watch price fields must be null for {item.symbol}.")
+                if item.watch_trigger_condition.strip() or item.watch_expires_after_sessions is not None:
+                    raise ValueError(f"PASS watch-monitor fields must be empty/null for {item.symbol}.")
 
             # setup_type is intentionally allowed for WATCH/PASS.
 
@@ -944,6 +1010,11 @@ def validate_review(
         # ====================================================
 
         elif item.decision == "BUY":
+
+            if any(value is not None for value in watch_values.values()):
+                raise ValueError(f"BUY watch price fields must be null for {item.symbol}.")
+            if item.watch_trigger_condition.strip() or item.watch_expires_after_sessions is not None:
+                raise ValueError(f"BUY watch-monitor fields must be empty/null for {item.symbol}.")
 
             if any(
                 value is None

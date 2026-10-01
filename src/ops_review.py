@@ -33,9 +33,14 @@ The account is PAPER. For BUY, propose a complete long-swing plan using the supp
 indicators, quality_profile and sizing_policy: setup type, limit entry, hard stop,
 profit target, expected holding days, time stop, indicator exit rule, risk tier and
 whole-share quantity when strategy capital is configured. Do not fill a quota. If
-the evidence does not support a complete plan, use WATCH/PASS. Python independently
-validates/caps quantity and order geometry; a human still approves an exact separate
-paper bracket order. Do not approve, execute or claim certainty of profit.
+the evidence does not support a complete BUY plan, use WATCH/PASS. For WATCH, use the
+provided live_reference_levels plus current quote/day-bar evidence to provide a preferred
+buy zone and/or breakout trigger when defensible, along with hypothetical stop/target
+zones, a concise trigger condition and an expiry in sessions. WATCH ranges are monitoring
+levels only, not executable orders. If current evidence cannot support a defensible range,
+leave those fields null rather than inventing precision. Python independently validates/caps
+BUY quantity and order geometry; a human still approves an exact separate paper bracket
+order. Do not approve, execute or claim certainty of profit.
 Return the strict schema. selected_symbols must match exactly the BUY evaluations.
 '''
 
@@ -61,6 +66,9 @@ def payload_from_context(context, max_picks=5, now=None):
             'candidates':copy.deepcopy(context['candidates'])}
     if not result['candidates'] or len({c['symbol'] for c in result['candidates']})!=len(result['candidates']):
         raise ValueError('Duplicated candidate.')
+    from src.watch_zones import reference_levels
+    for candidate in result['candidates']:
+        candidate['live_reference_levels'] = reference_levels(candidate)
     canonical(result)
     return result
 

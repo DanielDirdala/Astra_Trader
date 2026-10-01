@@ -114,6 +114,30 @@ def print_astra_report(row, settings):
         print(f"   Evidence: price={q.get('price')} technical_score={q.get('technical_score')} "
               f"setup_score={qp.get('setup_score')} quote_fresh={live.get('quote_fresh')} spread_bps={live.get('spread_bps')}")
 
+        if decision == 'WATCH':
+            low = money(ev.get('watch_buy_zone_low'))
+            high = money(ev.get('watch_buy_zone_high'))
+            breakout = money(ev.get('watch_breakout_trigger'))
+            stop_low = money(ev.get('watch_stop_zone_low'))
+            stop_high = money(ev.get('watch_stop_zone_high'))
+            target1 = money(ev.get('watch_target_1'))
+            target2 = money(ev.get('watch_target_2'))
+            if low is not None and high is not None:
+                print(f'   Preferred WATCH buy zone: ${low:.2f} - ${high:.2f}')
+            if breakout is not None:
+                print(f'   Alternative breakout price trigger: >= ${breakout:.2f}')
+            if stop_low is not None and stop_high is not None:
+                print(f'   Hypothetical invalidation/stop zone: ${stop_low:.2f} - ${stop_high:.2f}')
+            if target1 is not None:
+                suffix = f' | target 2: ${target2:.2f}' if target2 is not None else ''
+                print(f'   Hypothetical target 1: ${target1:.2f}{suffix}')
+            if ev.get('watch_trigger_condition'):
+                print('   WATCH trigger condition:', ev['watch_trigger_condition'])
+            if ev.get('watch_expires_after_sessions') is not None:
+                print('   WATCH expires after sessions:', ev['watch_expires_after_sessions'])
+            print('   These are monitoring ranges only; refresh and re-review before any order.')
+            continue
+
         if decision != 'BUY':
             continue
         buy_count += 1

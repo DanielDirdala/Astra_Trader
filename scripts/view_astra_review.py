@@ -36,6 +36,20 @@ def main() -> int:
         for item in report["evaluations"]:
             print(f"\n{item['symbol']} | {item['decision']} | assessment: {item['strength']}")
             print(item["thesis"])
+            if item["decision"] == "WATCH":
+                print(f"Setup: {item.get('setup_type')}")
+                if item.get('watch_buy_zone_low') is not None:
+                    print(f"WATCH buy zone: {item.get('watch_buy_zone_low')} - {item.get('watch_buy_zone_high')}")
+                if item.get('watch_breakout_trigger') is not None:
+                    print(f"WATCH breakout trigger: >= {item.get('watch_breakout_trigger')}")
+                if item.get('watch_stop_zone_low') is not None:
+                    print(f"WATCH stop/invalidation zone: {item.get('watch_stop_zone_low')} - {item.get('watch_stop_zone_high')}")
+                if item.get('watch_target_1') is not None:
+                    print(f"WATCH targets: {item.get('watch_target_1')} / {item.get('watch_target_2')}")
+                if item.get('watch_trigger_condition'):
+                    print(f"WATCH condition: {item.get('watch_trigger_condition')}")
+                if item.get('watch_expires_after_sessions') is not None:
+                    print(f"WATCH expires after sessions: {item.get('watch_expires_after_sessions')}")
             if item["decision"] == "BUY":
                 print(f"Setup: {item.get('setup_type')} | risk tier: {item.get('risk_tier')}")
                 print(f"Hypothetical entry: {item['entry_price']} | stop: {item['stop_price']} | target: {item['target_price']}")
